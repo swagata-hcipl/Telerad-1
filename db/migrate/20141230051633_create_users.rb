@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :gateway, null: false, default: 'Guest', limit: 20
       t.string :name, null: false, default: 'Guest', limit: 100
-      t.text :address, null: false, default: 'Guest'
+      t.text :address
       t.string :gateway_type, null: false, default: 'Guest', limit: 20
       t.string :password_digest, null: false, default: 'Guest', limit: 200
 

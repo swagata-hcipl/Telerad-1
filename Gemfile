@@ -23,7 +23,6 @@ group :production do
   gem 'unicorn',		'4.8.3'
 end
 
-<<<<<<< HEAD
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -32,7 +31,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
-=======
+
 group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
@@ -40,7 +39,6 @@ group :development, :test do
   gem 'thin'
   gem 'mysql2'
 end
->>>>>>> changingGemFile
 
 group :test do
   gem 'minitest-reporters', '1.0.5'

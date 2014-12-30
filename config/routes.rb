@@ -1,4 +1,8 @@
 Telerad::Application.routes.draw do
+  get 'studies/new'
+
+  get 'studies/create'
+
   root 'sessions#login'
 
   get ':controller(/:action(/:id))(.:format)'

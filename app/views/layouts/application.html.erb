@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if session[:user_id] %>
   <%= link_to "Logout", {controller: :sessions, action: :logout} %>
+  <% end %>
 <% if flash[:color]== "valid" %>
     <div>
       <p class="alert alert-success"><%= flash[:notice]%></p>

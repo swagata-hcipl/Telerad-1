@@ -1,0 +1,16 @@
+<h1>Patients#index</h1>
+<p>Find me in app/views/patients/index.html.erb</p>
+<%= link_to "+patient", :action => :new %>
+<table>
+  <% @patients.each do |patient| %>
+  <tr>
+    <td><%= patient.name %></td>
+    <td><%= patient.address %></td>
+    <td><%= patient.dob %></td>
+    <td><%= patient.gender %></td>
+    <td><%= patient.pincode %></td>
+    <td><%= link_to "Edit",:controller=>'patients',:action => 'edit',:id => patient.id %></td>
+    <td><%= link_to "Studies","" %></td>
+  </tr>
+  <% end %>
+</table>

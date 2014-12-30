@@ -33,18 +33,13 @@ GEM
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.1)
-<<<<<<< HEAD
-      tzinfo (~> 0.3.37)
-    arel (4.0.2)
-    bcrypt-ruby (3.0.1)
-    builder (3.1.4)
-=======
       tzinfo (~> 1.1)
     ajax-datatables-rails (0.2.1)
       railties (>= 3.1)
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
+    bcrypt-ruby (3.0.1)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.0)
@@ -57,7 +52,6 @@ GEM
     celluloid (0.16.0)
       timers (~> 4.0.0)
     coderay (1.1.0)
->>>>>>> changingGemFile
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -208,14 +202,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
-  bcrypt-ruby (~> 3.0.0)
-=======
   ajax-datatables-rails
   bcrypt (= 3.1.7)
+  bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (= 3.2.0.0)
   byebug (= 3.4.0)
->>>>>>> changingGemFile
   coffee-rails (~> 4.0.0)
   guard-minitest (= 2.3.1)
   jbuilder (~> 2.0)

@@ -16,5 +16,4 @@
 /tmp
 
 #ignore database.yml
-/config/database.yml
-/Gemfile.lock
+config/database.yml

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141230072244) do
     t.integer  "user_id"
     t.string   "name",       limit: 100, default: "Guest", null: false
     t.string   "gender",     limit: 20,  default: "Guest", null: false
-    t.string   "dob",        limit: 20,  default: "Guest", null: false
+    t.date     "dob"
     t.text     "address"
     t.string   "pincode",    limit: 20,  default: "Guest", null: false
     t.string   "ext_uid",    limit: 20,  default: "Guest", null: false

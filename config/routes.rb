@@ -1,6 +1,16 @@
 Telerad::Application.routes.draw do
   root 'sessions#login'
 
+  get ':controller(/:action(/:id))(.:format)'
+
+  get "patients/index"
+  get "patients/new"
+  post "patients/create"
+  get "patients/show"
+  # get "patients/edit"
+  post "patients/update"
+  
+
   get "sessions/login"
   post "sessions/login_attempt"
   get "sessions/logout"
@@ -10,6 +20,8 @@ Telerad::Application.routes.draw do
   get "users/edit"
   get "users/index"
   get "users/show"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

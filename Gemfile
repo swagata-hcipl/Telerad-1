@@ -23,21 +23,13 @@ group :production do
   gem 'unicorn',		'4.8.3'
 end
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
 group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
   gem 'thin'
   gem 'mysql2'
+  gem 'byebug',      '3.4.0'
 end
 
 group :test do

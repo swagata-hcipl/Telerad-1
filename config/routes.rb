@@ -1,4 +1,13 @@
 Telerad::Application.routes.draw do
+  get "sessions/login"
+  get "sessions/login_attempt"
+  get "sessions/logout"
+  get "users/new"
+  get "users/create"
+  get "users/update"
+  get "users/edit"
+  get "users/index"
+  get "users/show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

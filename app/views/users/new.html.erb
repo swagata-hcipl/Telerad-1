@@ -1,2 +1,19 @@
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
+<%= link_to "<< login", {:controller => :sessions, :action => :login} %>
+<h1>Sign Up</h1>
+<%= form_for(:user, :url => {:controller => 'users', :action => 'create'}, :html => {:id => "SignupForm"}) do |f| %>
+<p> Name:</br> <%= f.text_field :name, value: "", :minlength => 6 %> </p>
+<p> Username:</br> <%= f.text_field :gateway, value: "", :minlength => 6 %> </p>
+<p> Type:</br> <%= f.select :gateway_type, options_for_select([['Diagnostic Center','Diagnostic Center'],['EMR','EMR']])%> </p>
+<p> Password:</br> <%= f.password_field :password%></p>
+<p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
+<%= f.submit :Signup %>
+<% end %>
+<% if @user.errors.any? %>
+<ul class="Signup_Errors">
+<% for message_error in @user.errors.full_messages %>
+<li>* <%= message_error %></li>
+<% end %>
+</ul>
+<% end %>

@@ -1,9 +1,11 @@
 Telerad::Application.routes.draw do
+  root 'sessions#login'
+
   get "sessions/login"
-  get "sessions/login_attempt"
+  post "sessions/login_attempt"
   get "sessions/logout"
   get "users/new"
-  get "users/create"
+  post "users/create"
   get "users/update"
   get "users/edit"
   get "users/index"

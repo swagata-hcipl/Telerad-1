@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20141230072244) do
 
   create_table "patients", force: true do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "gender"
-    t.string   "dob"
+    t.string   "name",       limit: 100, default: "Guest", null: false
+    t.string   "gender",     limit: 20,  default: "Guest", null: false
+    t.string   "dob",        limit: 20,  default: "Guest", null: false
     t.text     "address"
-    t.string   "pincode"
-    t.string   "ext_uid"
+    t.string   "pincode",    limit: 20,  default: "Guest", null: false
+    t.string   "ext_uid",    limit: 20,  default: "Guest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(version: 20141230072244) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "gateway"
-    t.string   "name"
-    t.string   "address"
-    t.string   "gateway_type"
-    t.string   "password_digest"
+    t.string   "gateway",         limit: 20,  default: "Guest", null: false
+    t.string   "name",            limit: 100, default: "Guest", null: false
+    t.text     "address"
+    t.string   "gateway_type",    limit: 20,  default: "Guest", null: false
+    t.string   "password_digest", limit: 200, default: "Guest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

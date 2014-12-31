@@ -1,5 +1,6 @@
 class StudiesController < ApplicationController
-  def new
+  def index
+  	@study = Study.find(params[:id])
   end
 
   def create

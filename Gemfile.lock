@@ -208,7 +208,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   guard-minitest (= 2.3.1)
   jbuilder (~> 2.0)
-  jquery-datatables-rails
+  jquery-datatables-rails (~> 3.1.1)
   jquery-datatables-tabletools-rails!
   jquery-rails
   mini_backtrace (= 0.1.3)

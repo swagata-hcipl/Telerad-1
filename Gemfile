@@ -15,7 +15,7 @@ gem 'will_paginate'
 gem 'jquery-datatables-rails'
 gem 'ajax-datatables-rails'
 gem 'jquery-datatables-tabletools-rails', git: "https://github.com/mcallaway/jquery-datatables-tabletools-rails.git"
-
+gem 'paper_trail', '~> 3.0.6'
 
 group :production do
   gem 'pg',             '0.17.1'

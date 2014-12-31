@@ -7,10 +7,10 @@ Telerad::Application.routes.draw do
 
   get ':controller(/:action(/:id))(.:format)'
 
-  get "patients/index"
+  # get "patients/index"
   get "patients/new"
   post "patients/create"
-  get "patients/show"
+  # get "patients/show"
   # get "patients/edit"
   post "patients/update"
   
@@ -20,10 +20,10 @@ Telerad::Application.routes.draw do
   get "sessions/logout"
   get "users/new"
   post "users/create"
-  get "users/update"
-  get "users/edit"
+  # get "users/update"
+  # get "users/edit"
   get "users/index"
-  get "users/show"
+  # get "users/show"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

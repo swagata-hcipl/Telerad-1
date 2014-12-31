@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   def index
-    @patients = Patient.all
+    @studies = Study.where patient_id: params[:id]
   end
 
   def new
@@ -8,19 +8,17 @@ class PatientsController < ApplicationController
   end
 
   def create
-    @patient = Patient.new(patient_params)
+    # @patient = Patient.new(patient_params)
+    @patient = authenticate_user.patients.build(patient_params)
     if @patient.save
       flash[:notice] = "Patient Created successfully"
       flash[:color]= "valid"
-      redirect_to(:action => :index)
+      redirect_to(:controller => 'users', :action => 'index')
     else
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
       render "new"
     end
-  end
-
-  def show
   end
 
   def edit
@@ -32,7 +30,7 @@ class PatientsController < ApplicationController
     if @patient.update_attributes(patient_params)
       flash[:notice] = "Patient Updated successfully"
       flash[:color]= "valid"
-      redirect_to(:action => :index)
+      redirect_to(:controller => 'users', :action => 'index')
     else
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"

@@ -1,6 +1,6 @@
 <h1>Patients#edit</h1>
 <p>Find me in app/views/patients/edit.html.erb</p>
-<%= link_to "<< List", :action => :index %>
+<%= link_to "<< List", :action => :show, :id => params[:id] %>
 <h1>Edit patient</h1>
 <%= form_for(:patient, :url => {:controller => 'patients', :action => 'update', :id => params[:id]}, :html => {:id => "PatientForm"}) do |f| %>
 <p> Name:</br> <%= f.text_field :name, :minlength => 6 %> </p>

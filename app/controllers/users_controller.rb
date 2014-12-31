@@ -14,8 +14,9 @@ class UsersController < ApplicationController
     else
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
+      render "new"
     end
-    render "new"
+    
   end
 
   def update
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    
+    @patients = Patient.where user_id: session[:user_id]
   end
 
   def show

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.3"
+ruby "2.0.0"
 
 gem 'rails', '4.1.6'
 gem 'bcrypt', '3.1.7'
@@ -29,7 +29,6 @@ group :development, :test do
   gem 'spring',      '1.1.3'
   gem 'thin'
   gem 'mysql2'
-  gem 'byebug',      '3.4.0'
 end
 
 group :test do

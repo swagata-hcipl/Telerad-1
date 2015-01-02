@@ -1,0 +1,20 @@
+<% if !@versions.empty? %>
+  <h3>Current Version: <%= @versions.length %></h3>
+
+  <b>Created At:</b>
+  <%= @versions.last.created_at%>
+  <br>
+
+  <% if @versions.length.to_i > 1 %>
+  <% @versions.each do |version|%>
+      </br><b>Modify at:</b>
+      <%= l(version.created_at, format: "%-d.%m.%Y %H:%M:%S %Z") %></br>
+     <b>More info:</b>
+      <% version.changeset.each do |key, value| %>
+<pre><%="#{key}- #{value}"%></pre>
+      <%end%>  
+  <% end %>
+    <% end %>
+<% else %>
+  <p>This item does not have any registered version.</p>
+<% end %>

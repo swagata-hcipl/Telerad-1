@@ -17,12 +17,20 @@ class CommentsController < ApplicationController
   end
 
   def show
+  	@comments = Comment.all
+  end
+
+  def edit
+  	@comment = Comment.find(params[:id])
+  end
+
+  def history
   	@comment = Comment.find(params[:id])
   	@versions = @comment.versions
   end
 
   private
   def comment_params
-    params.require(:study).permit(:comment)
+    params.require(:comment).permit(:comment)
   end
 end

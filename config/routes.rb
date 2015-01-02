@@ -1,5 +1,6 @@
 Telerad::Application.routes.draw do
   get 'comments/new'
+  post 'comments/create'
 
   get 'comments/show'
 

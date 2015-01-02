@@ -1,6 +1,7 @@
 class PatientsController < ApplicationController
   def index
-    @studies = Study.where patient_id: params[:id]
+    @study = Study.new
+    @studies = current_user.studies
   end
 
   def new
@@ -8,9 +9,8 @@ class PatientsController < ApplicationController
   end
 
   def create
-    # @patient = Patient.new(patient_params)
-    @patient = authenticate_user.patients.build(patient_params)
-    if @patient.save
+    @patient = current_user.patients.create(patient_params)
+    if @patient
       flash[:notice] = "Patient Created successfully"
       flash[:color]= "valid"
       redirect_to(:controller => 'users', :action => 'index')
@@ -41,5 +41,9 @@ class PatientsController < ApplicationController
   private
   def patient_params
     params.require(:patient).permit(:name, :address, :gender, :dob, :pincode)
+  end
+
+  def current_study
+    current_user.studies.where(id: params[:id])
   end
 end

@@ -9,12 +9,15 @@ class StudiesController < ApplicationController
   end
 
   def create
-    @study = current_user.studies.create(:patient => current_patient)
-  end
-
-  def upload
-    # @user = authenticate_user.patients.where(params[:id])
+    uploaded_io = params[:study][:dicom_file_upload]
     debugger
+    # node = DClient.new("10.1.25.200", 104)
+    # uploaded_io.each do |tmpFile|
+    #   node.send(tmpFile.tempfile)
+    # end
+    # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    #   file.write(uploaded_io.read)
+    # end
   end
 
   private

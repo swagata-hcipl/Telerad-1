@@ -17,6 +17,7 @@ gem 'ajax-datatables-rails'
 gem 'jquery-datatables-tabletools-rails', git: "https://github.com/mcallaway/jquery-datatables-tabletools-rails.git"
 gem 'rubyzip'
 gem 'jquery-fileupload-rails', :git => 'git://github.com/tsaiid/jquery-fileupload-rails.git'
+gem 'dicom'
 
 group :production do
   gem 'pg',             '0.17.1'

@@ -70,6 +70,7 @@ GEM
     daemons (1.1.9)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    dicom (0.9.6)
     erubis (2.7.0)
     eventmachine (1.0.4)
     execjs (2.2.2)
@@ -215,6 +216,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.2.0.0)
   byebug (= 3.4.0)
   coffee-rails (~> 4.0.0)
+  dicom
   guard-minitest (= 2.3.1)
   jbuilder (~> 2.0)
   jquery-datatables-rails

@@ -4,8 +4,9 @@
 <%= link_to "List", {:controller => "users", :action => :index}, :class => "btn btn-primary" %>
 <div class="container">
   <%= form_for @study do |f| %>
-  <%= f.file_field :dicom_file_upload %>
-<% end %>
+    <%= f.file_field :dicom_file_upload, :multiple => true %>
+    <%= f.submit "Upload", :disable_with => 'Uploading...' %>
+  <% end %>
 </div>
 <table id="studiesTable" class="table table-bordered">
   <thead>

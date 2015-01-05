@@ -5,6 +5,7 @@
 <div class="container">
   <%= form_for @study do |f| %>
     <%= f.file_field :dicom_file_upload, :multiple => true %>
+    <%= f.hidden_field :patient_id, :value => @study[:patient_id] %>
     <%= f.submit "Upload", :disable_with => 'Uploading...' %>
   <% end %>
 </div>

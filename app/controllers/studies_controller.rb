@@ -1,3 +1,6 @@
+require 'dicom'
+include DICOM
+
 class StudiesController < ApplicationController
   
   def new
@@ -9,12 +12,16 @@ class StudiesController < ApplicationController
   end
 
   def create
+    @study = current_user.studies.new
     uploaded_io = params[:study][:dicom_file_upload]
-    debugger
-    # node = DClient.new("10.1.25.200", 104)
-    # uploaded_io.each do |tmpFile|
-    #   node.send(tmpFile.tempfile)
-    # end
+    node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
+    uploaded_io.each do |tmpFile|
+      node.send(tmpFile.tempfile.path)
+      lastSavedStudy = StudyTable.last
+      @study.study_uid = lastSavedStudy[:study_iuid]
+      @study.patient_id = params[:study][:patient_id]
+      @study.save
+    end
     # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
     #   file.write(uploaded_io.read)
     # end
@@ -22,7 +29,11 @@ class StudiesController < ApplicationController
 
   private
     def current_patient
-      Patient.where(id: params[:id])
+      @patient = Patient.where(id: params[:id])
+    end
+
+    def studies_params
+      params.require(:study).permit(:patient_id, :user_id, :study_uid, :created_at, :updated_at)
     end
 
 end

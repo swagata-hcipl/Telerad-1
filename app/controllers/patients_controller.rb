@@ -1,7 +1,7 @@
 class PatientsController < ApplicationController
   def index
-    @study = Study.new
-    @studies = current_user.studies
+    @study = current_user.studies.new(:patient => Patient.find(params[:id]))
+    @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
   end
 
   def new

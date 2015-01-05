@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+<h1>Sessions#login</h1>
+<p>Find me in app/views/sessions/login.html.erb</p>
+<%= link_to "Sign Up >>", {:controller => 'users', :action => 'new'} %>
+<h4>Log In</h4>
+<%= form_tag(:action => 'login_attempt') do %>
+<p>Username or Email:</br> <%= text_field_tag(:gateway) %></p>
+<p>Password:</br> <%= password_field_tag :password %></p>
+<%= submit_tag("Log In") %>
+<% end %>
+=======
 <body class="login">
   <div class="container">
     <div class="row">
@@ -399,3 +410,4 @@
 </div>
 </div>
 </div>
+>>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03

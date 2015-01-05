@@ -1,8 +1,6 @@
-<h1>Patients#edit</h1>
-<p>Find me in app/views/patients/edit.html.erb</p>
-<%= link_to "<< List", :action => :show, :id => params[:id] %>
+<%= link_to "<< List", :controller => :users, :action => :index %>
 <h1>Edit patient</h1>
-<%= form_for(:patient, :url => {:controller => 'patients', :action => 'update', :id => params[:id]}, :html => {:id => "PatientForm"}) do |f| %>
+<%= form_for(:patient, :url => {:controller => 'patients', :action => 'update', :id => params[:id]}, :html => {:id => "PatientForm", :method => 'patch'}) do |f| %>
 <p> Name:</br> <%= f.text_field :name, :minlength => 6 %> </p>
 <p> Address:</br> <%= f.text_field :address, :minlength => 6 %> </p>
 <p> Gender:</br> <%= f.select :gender, options_for_select([['Male','Male'],['Female','Female'],['Others','Others']], :selected => @patient.gender)%> </p>

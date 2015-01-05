@@ -1,6 +1,7 @@
-<h1>Patients#new</h1>
-<p>Find me in app/views/patients/new.html.erb</p>
-<%= link_to "<< List", :controller => :users, :action => :index %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+<%= link_to "<< List", :controller => "users", :action => :index %>
 <h1>New patient</h1>
 <%= form_for(:patient, :url => {:controller => 'patients', :action => 'create'}, :html => {:id => "PatientForm"}) do |f| %>
 <p> Name:</br> <%= f.text_field :name, value: "", :minlength => 6 %> </p>
@@ -17,3 +18,6 @@
 <% end %>
 </ul>
 <% end %>
+</div>
+</div>
+</div>

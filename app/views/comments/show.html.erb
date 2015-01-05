@@ -1,0 +1,8 @@
+<div class = "container">
+<h1>Comments</h1>
+<ul>
+<%@comments.each do |comment|%>
+<pre>Comment <%=comment.id%>:<%=comment.comment%></pre>
+<%end%>
+</ul>
+</div>

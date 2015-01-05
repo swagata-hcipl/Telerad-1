@@ -14,7 +14,7 @@ class StudiesController < ApplicationController
   def create
     @study = current_user.studies.new
     uploaded_io = params[:study][:dicom_file_upload]
-    node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
+    node = DClient.new("192.168.1.2", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
     uploaded_io.each do |tmpFile|
       node.send(tmpFile.tempfile.path)
       sleep 1
@@ -33,6 +33,7 @@ class StudiesController < ApplicationController
     # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
     #   file.write(uploaded_io.read)
     # end
+
   end
 
   private
@@ -45,3 +46,4 @@ class StudiesController < ApplicationController
     end
 
 end
+

@@ -11,13 +11,17 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"
+<<<<<<< HEAD
+      log_in @user
+=======
+>>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03
       redirect_to(:controller => 'users', :action => 'index')
     else
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
       render "new"
     end
-    
+
   end
 
   def update
@@ -27,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @patients = Patient.where user_id: session[:user_id]
+    @patients = current_user.patients
   end
 
   def show

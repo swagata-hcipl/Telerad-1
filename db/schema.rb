@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20141230072244) do
   end
 
   create_table "patients", force: true do |t|
-    t.integer  "user_id"
     t.string   "name",       limit: 100, default: "Guest", null: false
     t.string   "gender",     limit: 20,  default: "Guest", null: false
     t.date     "dob"
@@ -34,12 +33,15 @@ ActiveRecord::Schema.define(version: 20141230072244) do
   end
 
   create_table "studies", force: true do |t|
-    t.integer  "user_id"
     t.integer  "patient_id"
+    t.integer  "user_id"
     t.string   "study_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "studies", ["patient_id"], name: "index_studies_on_patient_id", using: :btree
+  add_index "studies", ["user_id"], name: "index_studies_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "gateway",         limit: 20,  default: "Guest", null: false

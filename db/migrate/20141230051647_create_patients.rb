@@ -1,7 +1,6 @@
 class CreatePatients < ActiveRecord::Migration
   def change
     create_table :patients do |t|
-      t.references :user
 
       t.string :name, null: false, default: 'Guest', limit: 100
       t.string :gender, null: false, default: 'Guest', limit: 20

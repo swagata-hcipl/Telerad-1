@@ -8,9 +8,5 @@ class StudiesController < ApplicationController
   def index
   end
 
-  def comment_params
-  	params.require(:study).permit(:comment)
-  end
-
 end
 

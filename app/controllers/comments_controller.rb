@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    @comment = Comment.new
+    @comment = Study.comments.build(comment_params)
   end
 
   def create
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comments = Comment.all
+    @comments = Study.comments
   end
 end
 

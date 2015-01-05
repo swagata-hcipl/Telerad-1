@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
+  
   def index
     @study = current_user.studies.new(:patient => Patient.find(params[:id]))
     @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)

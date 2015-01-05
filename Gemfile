@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.3"
+ruby "2.0.0"
 
 gem 'rails', '4.1.6'
 gem 'bcrypt', '3.1.7'
@@ -15,7 +15,9 @@ gem 'will_paginate'
 gem 'jquery-datatables-rails', '~> 3.1.1'
 gem 'ajax-datatables-rails'
 gem 'jquery-datatables-tabletools-rails', git: "https://github.com/mcallaway/jquery-datatables-tabletools-rails.git"
-
+gem 'rubyzip'
+gem 'jquery-fileupload-rails', :git => 'git://github.com/tsaiid/jquery-fileupload-rails.git'
+gem 'dicom'
 
 group :production do
   gem 'pg',             '0.17.1'

@@ -1,0 +1,9 @@
+<%= link_to "Sign Up >>", {:controller => :users, :action => :new} %>
+<h1>Log in</h1>
+  <%= form_for(:session, url: login_path) do |f| %>
+  <%= f.label :gateway %>
+  <%= f.text_field :gateway, class: 'form-control' %>
+  <%= f.label :password %>
+  <%= f.password_field :password, class: 'form-control' %>
+  <%= f.submit "Log in", class: "btn btn-primary" %>
+<% end %>

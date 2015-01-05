@@ -9,6 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require assets/global/plugins/font-awesome/css/font-awesome.min
+ *= require assets/global/plugins/simple-line-icons/simple-line-icons.min
+ *= require assets/global/plugins/bootstrap/css/bootstrap.min
+ *= require assets/global/plugins/uniform/css/uniform.default.min
  *= require_tree .
  */
 @import "bootstrap-sprockets";

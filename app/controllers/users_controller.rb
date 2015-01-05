@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  # before_filter :authenticate_user
+  before_filter :authenticate_user
 
   def new
     @user = User.new
@@ -11,7 +11,10 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"
+<<<<<<< HEAD
       log_in @user
+=======
+>>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03
       redirect_to(:controller => 'users', :action => 'index')
     else
       flash[:notice] = "Form is invalid"

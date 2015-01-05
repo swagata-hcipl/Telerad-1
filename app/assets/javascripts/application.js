@@ -12,8 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require assets/global/plugins/jquery-validation/js/jquery.validate.min
 //= require turbolinks
+<<<<<<< HEAD
 //= require bootstrap-sprockets
 //= require jquery-fileupload
 //= require jquery.uploadify.min
 //= require_tree .
+=======
+//= require_tree .
+>>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03

@@ -27,6 +27,7 @@ class StudiesController < ApplicationController
     # end
   end
 
+<<<<<<< HEAD
   private
     def current_patient
       @patient = Patient.where(id: params[:id])
@@ -37,3 +38,14 @@ class StudiesController < ApplicationController
     end
 
 end
+=======
+  def index
+  end
+
+  def comment_params
+  	params.require(:study).permit(:comment)
+  end
+
+end
+
+>>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03

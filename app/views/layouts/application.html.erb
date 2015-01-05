@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<!--[if lt IE 9]>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+ </script>
+<![endif]-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
 <head>
   <title>Telerad</title>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+<<<<<<< HEAD
 <body>
 
 <% if flash[:color]== "valid" %>
@@ -17,6 +28,8 @@
       <p class="alert alert-danger"><%=flash[:notice]%></p>
     </div>
   <%end%>
+=======
+>>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03
 
 <%= yield %>
 

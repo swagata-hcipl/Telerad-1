@@ -12,7 +12,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0'
 gem 'will_paginate'
-gem 'jquery-datatables-rails'
+gem 'jquery-datatables-rails', '~> 3.1.1'
 gem 'ajax-datatables-rails'
 gem 'jquery-datatables-tabletools-rails', git: "https://github.com/mcallaway/jquery-datatables-tabletools-rails.git"
 

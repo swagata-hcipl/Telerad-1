@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
+//= require jquery-fileupload
+//= require jquery.uploadify.min
 //= require_tree .

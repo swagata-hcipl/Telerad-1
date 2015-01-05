@@ -133,7 +133,7 @@ parseByteArray = (byteArray) ->
     # we catch the error and display it to the user
     $("#parseError").text err
   return
-
-# $(document).ready handleFileSelect
-
-$("#study_dicom_file_upload").on "click", handleFileSelect
+$(document).ready handleFileSelect
+# $("#study_dicom_file_upload").click "page:load", handleFileSelect
+# document.getElementById("study_dicom_file_upload").addEventListener 'change', handleFileSelect
+$(document).ready $("#study_dicom_file_upload").bind "click", handleFileSelect, false

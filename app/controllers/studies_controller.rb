@@ -24,7 +24,11 @@ class StudiesController < ApplicationController
       @study.patient_id = params[:study][:patient_id]
       @study.num_instances = lastSavedStudy[:num_instances]
       if !existing_record.nil?
-        existing_record.update_attributes(:updated_at => DateTime.now, :num_instances => @study.num_instances )
+        if existing_record[:patient_id] == @study.patient_id
+          existing_record.update_attributes(:updated_at => DateTime.now, :num_instances => @study.num_instances )
+        else
+          flash[:invalid] = "File not uploaded as it is under a different patient"
+        end
       else
         @study.save
       end

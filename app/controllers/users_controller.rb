@@ -2,6 +2,10 @@ class UsersController < ApplicationController
 
   # before_filter :authenticate_user
 
+  def index
+    @patients = current_user.patients.uniq
+  end
+
   def new
     @user = User.new
   end
@@ -25,10 +29,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-  end
-
-  def index
-    @patients = current_user.patients
   end
 
   def show

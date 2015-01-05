@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+<%= link_to "List", {:controller => "users", :action => :index}, :class => "btn btn-primary" %>
+<div class="container">
+  <%= form_for @study do |f| %>
+    <%= f.file_field :dicom_file_upload, :multiple => true %>
+    <%= f.hidden_field :patient_id, :value => @study[:patient_id] %>
+    <%= f.submit "Upload", :disable_with => 'Uploading...' %>
+  <% end %>
+</div>
+<table id="studiesTable" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Study ID</th>
+      <th>Created at</th>
+      <th>Comments</th>
+      <th>Viewer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @studies.each do |study| %>
+    <tr>
+      <td><%= study.study_uid %></td>
+      <td><%= study.created_at %></td>
+      <td><%= link_to "Comments","" %></td>
+      <td><%= link_to "View Study","" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+// $(function() {
+//   // Create an empty object to store our custom script data
+//   var uploadify_script_data = {};
+
+//   // Fetch the CSRF meta tag data
+//   var csrf_token = $('meta[name=csrf-token]').attr('content');
+//   var csrf_param = $('meta[name=csrf-param]').attr('content');
+
+//   // Now associate the data in the config, encoding the data safely
+//   uploadify_script_data[csrf_param] = encodeURI(csrf_token);
+
+//   $('#file_upload').uploadify({
+//     'swf'      : '<%= asset_path "uploadify.swf" %>',
+//     'uploader' : '<%=  %>',
+//     'fileObjName': 'upload[upload]',
+//     'fileSizeLimit' : '10MB',
+//     'formData' : uploadify_script_data
+//     // Put your options here
+//   });
+// });
+</script>
+

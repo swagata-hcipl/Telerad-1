@@ -8,6 +8,16 @@
 </head>
 <body>
 
+<% if flash[:color]== "valid" %>
+    <div>
+      <p class="alert alert-success"><%= flash[:notice]%></p>
+    </div>
+  <% elsif flash[:color]== "invalid"%>
+    <div>
+      <p class="alert alert-danger"><%=flash[:notice]%></p>
+    </div>
+  <%end%>
+
 <%= yield %>
 
 </body>

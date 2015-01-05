@@ -1,37 +1,24 @@
-<<<<<<< HEAD
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
-<%= link_to "<< login", {:controller => :sessions, :action => :new} %>
-=======
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-<%= link_to "<< login", {:controller => :sessions, :action => :login} %>
->>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03
-<h1>Sign Up</h1>
-<%= form_for @user do |f| %>
-<p> Name:</br> <%= f.text_field :name, value: "", :minlength => 6 %> </p>
-<p> Username:</br> <%= f.text_field :gateway, value: "", :minlength => 6 %> </p>
-<p> Type:</br> <%= f.select :gateway_type, options_for_select([['Diagnostic Center','Diagnostic Center'],['EMR','EMR']])%> </p>
-<p> Password:</br> <%= f.password_field :password%></p>
-<p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
-<%= f.submit :Signup %>
-<% end %>
-<% if @user.errors.any? %>
-<ul class="Signup_Errors">
-<% for message_error in @user.errors.full_messages %>
-<li>* <%= message_error %></li>
-<% end %>
-</ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<% end %>
-=======
-<% end %>
->>>>>>> 31d8aca91dc3735ce24d2ea2b140859cbd58af54
-=======
-<% end %>
+    <%= link_to "<< login", {:controller => :sessions, :action => :login} %>
+    <h1>Sign Up</h1>
+    <%= form_for @user do |f| %>
+    <p> Name:</br> <%= f.text_field :name, value: "", :minlength => 6 %> </p>
+    <p> Username:</br> <%= f.text_field :gateway, value: "", :minlength => 6 %> </p>
+    <p> Type:</br> <%= f.select :gateway_type, options_for_select([['Diagnostic Center','Diagnostic Center'],['EMR','EMR']])%> </p>
+    <p> Password:</br> <%= f.password_field :password%></p>
+    <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
+    <%= f.submit :Signup %>
+    <% end %>
+    <% if @user.errors.any? %>
+    <ul class="Signup_Errors">
+    <% for message_error in @user.errors.full_messages %>
+    <li>* <%= message_error %></li>
+    <% end %>
+    </ul>
+    <%end%>
 </div>
 </div>
 </div>
->>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03
+

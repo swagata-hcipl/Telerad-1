@@ -14,7 +14,7 @@ class StudiesController < ApplicationController
   def create
     @study = current_user.studies.new
     uploaded_io = params[:study][:dicom_file_upload]
-    node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
+    node = DClient.new("192.168.1.2", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
     uploaded_io.each do |tmpFile|
       node.send(tmpFile.tempfile.path)
       lastSavedStudy = StudyTable.last
@@ -22,12 +22,9 @@ class StudiesController < ApplicationController
       @study.patient_id = params[:study][:patient_id]
       @study.save
     end
-    # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-    #   file.write(uploaded_io.read)
-    # end
+    redirect_to :controller => 'patients', :action => 'index', :id => params[:study][:patient_id]
   end
 
-<<<<<<< HEAD
   private
     def current_patient
       @patient = Patient.where(id: params[:id])
@@ -38,14 +35,4 @@ class StudiesController < ApplicationController
     end
 
 end
-=======
-  def index
-  end
 
-  def comment_params
-  	params.require(:study).permit(:comment)
-  end
-
-end
-
->>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03

@@ -25,8 +25,8 @@ class PatientsController < ApplicationController
   end
 
   def edit
-    @patient = Patient.find(params[:id])
-    if @patient.user_id!=authenticate_user.id
+    @patient = current_user.patients.find(params[:id])
+    if !@patient
       flash[:notice] = "Black Sheeep, hahahahahaha!"
       flash[:color]= "invalid"
       redirect_to :controller => 'users', :action => 'index'
@@ -36,7 +36,7 @@ class PatientsController < ApplicationController
   end
 
   def update
-    @patient = Patient.find(params[:id])
+    @patient = current_user.patients.find(params[:id])
     if @patient.update_attributes(patient_params)
       flash[:notice] = "Patient Updated successfully"
       flash[:color]= "valid"
@@ -44,7 +44,7 @@ class PatientsController < ApplicationController
     else
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
-      render "new"
+      render "edit"
     end
   end
 
@@ -53,12 +53,8 @@ class PatientsController < ApplicationController
     params.require(:patient).permit(:name, :address, :gender, :dob, :pincode)
   end
 
-<<<<<<< HEAD
   def current_study
     current_user.studies.where(id: params[:id])
-=======
-  def authenticate_patient_user
 
->>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03
   end
 end

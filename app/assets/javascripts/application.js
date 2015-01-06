@@ -22,4 +22,3 @@
 //= require jquery.uploadify.min
 //= require nprogress.js
 //= require_tree .
-

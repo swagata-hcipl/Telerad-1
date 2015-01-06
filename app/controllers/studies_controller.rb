@@ -14,7 +14,7 @@ class StudiesController < ApplicationController
   def create
     @study = current_user.studies.new
     uploaded_io = params[:study][:dicom_file_upload]
-    node = DClient.new("192.168.1.2", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
+    node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
     uploaded_io.each do |tmpFile|
 
       dcm = DObject.read(tmpFile.tempfile.path)
@@ -26,7 +26,7 @@ class StudiesController < ApplicationController
       if !existing_record.nil?
         if existing_record[:patient_id] == @study.patient_id
           node.send(tmpFile.tempfile.path)
-          sleep 1
+          sleep 2
           @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
           existing_record.update_attributes(:updated_at => DateTime.now, :num_instances => @study.num_instances )
         else
@@ -34,7 +34,8 @@ class StudiesController < ApplicationController
         end
       else
         node.send(tmpFile.tempfile.path)
-        sleep 1
+        sleep 2
+        debugger
         @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
         @study.save
       end

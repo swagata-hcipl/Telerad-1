@@ -1,3 +1,15 @@
+$(document).on "page:fetch", ->
+  NProgress.start()
+  return
+
+$(document).on "page:change", ->
+  NProgress.done()
+  return
+
+$(document).on "page:restore", ->
+  NProgress.remove()
+  return
+
 handleFileSelect = (evt) ->
   files = evt.target.files # FileList object
   # files is a FileList of File objects. List some properties.

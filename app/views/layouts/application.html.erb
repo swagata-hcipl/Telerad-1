@@ -13,17 +13,9 @@
         <% if session[:user_id] %>
           <%= link_to "Logout", logout_path, method: "delete" %>
         <% end %>
-        <% if flash[:color]== "valid" %>
-          <div class="alert alert-success">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <p><%= flash[:notice]%></p>
-          </div>
-        <% elsif flash[:color]== "invalid"%>
-          <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <p><%=flash[:notice]%></p>
-          </div>
-        <%end%>
+        <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
     </div>
   </div>
 </div>

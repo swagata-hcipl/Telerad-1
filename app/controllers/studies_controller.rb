@@ -16,20 +16,26 @@ class StudiesController < ApplicationController
     uploaded_io = params[:study][:dicom_file_upload]
     node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
     uploaded_io.each do |tmpFile|
-      node.send(tmpFile.tempfile.path)
-      sleep 1
-      lastSavedStudy = StudyTable.last
-      @study.study_uid = lastSavedStudy[:study_iuid]
-      existing_record = current_user.studies.find_by(study_uid: @study.study_uid)
+
+      dcm = DObject.read(tmpFile.tempfile.path)
+      @study.study_uid = dcm.value("0020,000D")
       @study.patient_id = params[:study][:patient_id]
-      @study.num_instances = lastSavedStudy[:num_instances]
+
+      existing_record = current_user.studies.find_by(study_uid: @study.study_uid)
+      
       if !existing_record.nil?
         if existing_record[:patient_id] == @study.patient_id
+          node.send(tmpFile.tempfile.path)
+          sleep 1
+          @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
           existing_record.update_attributes(:updated_at => DateTime.now, :num_instances => @study.num_instances )
         else
-          flash[:invalid] = "File not uploaded as it is under a different patient"
+          flash[:danger] = "File not uploaded due to redunduncy!! Please check if the right patient profile is selected."
         end
       else
+        node.send(tmpFile.tempfile.path)
+        sleep 1
+        @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
         @study.save
       end
     end

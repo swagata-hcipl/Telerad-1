@@ -1,35 +1,4 @@
-<<<<<<< HEAD
-<h1>Sessions#login</h1>
-<p>Find me in app/views/sessions/login.html.erb</p>
-<%= link_to "Sign Up >>", {:controller => 'users', :action => 'new'} %>
-<h4>Log In</h4>
-<%= form_tag(:action => 'login_attempt') do %>
-<p>Username or Email:</br> <%= text_field_tag(:gateway) %></p>
-<p>Password:</br> <%= password_field_tag :password %></p>
-<%= submit_tag("Log In") %>
-<% end %>
-=======
-<body class="login">
-  <div class="container">
-    <div class="row">
-      <div class = "col-md-12">
-        <% if session[:user_id] %>
-          <%= link_to "Logout", {controller: :sessions, action: :logout} %>
-        <% end %>
-        <% if flash[:color]== "valid" %>
-          <div class="alert alert-success">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <p><%= flash[:notice]%></p>
-          </div>
-        <% elsif flash[:color]== "invalid"%>
-          <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <p><%=flash[:notice]%></p>
-          </div>
-        <%end%>
-    </div>
-  </div>
-</div>
+
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 <div class="menu-toggler sidebar-toggler">
 </div>
@@ -44,7 +13,7 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
   <!-- BEGIN LOGIN FORM -->
-  <%= form_tag(:action => 'login_attempt') do %>
+  <%= form_tag(:action => 'create') do %>
   <h3 class="form-title">Sign In</h3>
   <div class="alert alert-danger display-hide">
       <button class="close" data-close="alert"></button>
@@ -410,4 +379,3 @@
 </div>
 </div>
 </div>
->>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03

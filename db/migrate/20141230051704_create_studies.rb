@@ -5,6 +5,7 @@ class CreateStudies < ActiveRecord::Migration
       t.belongs_to :user, index: true
 
       t.string :study_uid
+      t.string :num_instances
       
       t.timestamps
     end

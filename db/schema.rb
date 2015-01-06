@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20141230072244) do
     t.integer  "patient_id"
     t.integer  "user_id"
     t.string   "study_uid"
+    t.string   "num_instances"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

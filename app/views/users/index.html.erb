@@ -1,24 +1,4 @@
-<body>
-  <div class="container">
-    <div class="row">
-      <div class = "col-md-12">
-        <% if session[:user_id] %>
-          <%= link_to "Logout", {controller: :sessions, action: :logout} %>
-        <% end %>
-        <% if flash[:color]== "valid" %>
-          <div class="alert alert-success">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <p><%= flash[:notice]%></p>
-          </div>
-        <% elsif flash[:color]== "invalid"%>
-          <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <p><%=flash[:notice]%></p>
-          </div>
-        <%end%>
-    </div>
-  </div>
-</div>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">

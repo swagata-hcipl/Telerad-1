@@ -12,8 +12,10 @@
 <table id="studiesTable" class="table table-bordered">
   <thead>
     <tr>
-      <th>Study ID</th>
-      <th>Created at</th>
+      <th>Description</th>
+      <th>Images</th>
+      <th>Conducted on</th>
+      <th>Updated on</th>
       <th>Comments</th>
       <th>Viewer</th>
     </tr>
@@ -21,10 +23,12 @@
   <tbody>
     <% @studies.each do |study| %>
     <tr>
-      <td><%= study.study_uid %></td>
-      <td><%= study.created_at %></td>
+      <td><%= study.study_table.study_desc %></td>
+      <td><%= study.num_instances %></td>
+      <td><%= study.study_table.study_datetime %></td>
+      <td><%= study.updated_at %></td>
       <td><%= link_to "Comments","" %></td>
-      <td><%= link_to "View Study","" %></td>
+      <td><%= link_to "View Study","http://localhost:8080/weasis/samples/applet.jsp?commands=%24dicom%3Aget%20-w%20http%3A//localhost%3A8080/weasis-pacs-connector/manifest%3FstudyUID%3D"+study.study_uid %></td>
     </tr>
     <% end %>
   </tbody>

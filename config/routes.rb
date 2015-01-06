@@ -12,6 +12,8 @@ Telerad::Application.routes.draw do
 
   get 'studies/new'
 
+  post 'emr_patient' => 'patients#emr'
+
   resources :users
   resources :patients
   resources :studies, only: [:new, :create]

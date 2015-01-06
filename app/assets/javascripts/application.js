@@ -20,5 +20,6 @@
 //= require bootstrap-sprockets
 //= require jquery-fileupload
 //= require jquery.uploadify.min
+//= require assets/global/plugins/jquery-validation/js/jquery.validate.min
 //= require_tree .
 

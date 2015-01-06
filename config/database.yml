@@ -37,3 +37,12 @@ production:
   username: telerad-rails
   password: mourocky
   socket: /var/run/mysqld/mysqld.sock
+
+pacs_development:
+  adapter: mysql2
+  encoding: utf8
+  database: pacsdb
+  pool: 5
+  username: pacs
+  password: pacs
+  socket: /var/run/mysqld/mysqld.sock

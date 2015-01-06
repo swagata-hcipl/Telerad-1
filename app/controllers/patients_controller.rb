@@ -53,12 +53,8 @@ class PatientsController < ApplicationController
     params.require(:patient).permit(:name, :address, :gender, :dob, :pincode)
   end
 
-<<<<<<< HEAD
   def current_study
     current_user.studies.where(id: params[:id])
-=======
-  def authenticate_patient_user
 
->>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03
   end
 end

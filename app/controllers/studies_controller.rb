@@ -14,7 +14,7 @@ class StudiesController < ApplicationController
   def create
     @study = current_user.studies.new
     uploaded_io = params[:study][:dicom_file_upload]
-    node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
+    node = DClient.new("192.168.1.3", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
     uploaded_io.each do |tmpFile|
       node.send(tmpFile.tempfile.path)
       lastSavedStudy = StudyTable.last

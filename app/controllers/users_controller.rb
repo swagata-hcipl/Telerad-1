@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  # before_filter :authenticate_user
+  before_filter :authenticate_user
 
   def index
     @patients = current_user.patients.uniq
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       flash[:success] = "Form is invalid"
       render "new"
     end
-    
+
   end
 
   def update

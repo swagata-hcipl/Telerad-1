@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  
+  before_filter :authenticate_user
   def index
     @study = current_user.studies.new(:patient => Patient.find(params[:id]))
     @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
@@ -23,11 +23,18 @@ class PatientsController < ApplicationController
   end
 
   def edit
-    @patient = Patient.find(params[:id])
+    @patient = current_user.patients.find(params[:id])
+    if !@patient
+      flash[:notice] = "Black Sheeep, hahahahahaha!"
+      flash[:color]= "invalid"
+      redirect_to :controller => 'users', :action => 'index'
+    else
+      render 'edit'
+    end
   end
 
   def update
-    @patient = Patient.find(params[:id])
+    @patient = current_user.patients.find(params[:id])
     if @patient.update_attributes(patient_params)
       flash[:notice] = "Patient Updated successfully"
       flash[:color]= "valid"
@@ -35,7 +42,7 @@ class PatientsController < ApplicationController
     else
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
-      render "new"
+      render "edit"
     end
   end
 
@@ -46,5 +53,6 @@ class PatientsController < ApplicationController
 
   def current_study
     current_user.studies.where(id: params[:id])
+
   end
 end

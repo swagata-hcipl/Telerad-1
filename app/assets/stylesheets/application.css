@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require nprogress.css
+ *= require jquery.fileupload-ui
  *= require_tree .
  */
 @import "bootstrap-sprockets";

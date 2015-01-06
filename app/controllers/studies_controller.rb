@@ -13,31 +13,55 @@ class StudiesController < ApplicationController
 
   def create
     @study = current_user.studies.new
-    uploaded_io = params[:study][:dicom_file_upload]
+    uploaded_io = params[:study][:upload]
     node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
-    uploaded_io.each do |tmpFile|
+    respond_to do |format|
+      uploaded_io.each do |tmpFile|
+        dcm = DObject.read(tmpFile.tempfile.path)
+        @study.study_uid = dcm.value("0020,000D")
+        @study.patient_id = params[:study][:patient_id]
 
-      dcm = DObject.read(tmpFile.tempfile.path)
-      @study.study_uid = dcm.value("0020,000D")
-      @study.patient_id = params[:study][:patient_id]
+        existing_record = current_user.studies.find_by(study_uid: @study.study_uid)
+        
+        if !existing_record.nil?
+          if existing_record[:patient_id] == @study.patient_id
+            node.send(tmpFile.tempfile.path)
+            sleep 2
+            @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
+            
+            if existing_record.update_attributes(:updated_at => DateTime.now, :num_instances => @study.num_instances )
+              format.html {
+                render :json => [@study.to_jq_upload].to_json,
+                :content_type => 'text/html',
+                :layout => false
+              }
+              format.json { render json: {files: [@study.to_jq_upload]}, status: :created, location: @study }
+            else
+              format.html { render action: "new" }
+              format.json { render json: @study.errors, status: :unprocessable_entity }
+            end
 
-      existing_record = current_user.studies.find_by(study_uid: @study.study_uid)
-      
-      if !existing_record.nil?
-        if existing_record[:patient_id] == @study.patient_id
+          else
+            flash[:danger] = "File not uploaded due to redunduncy!! Please check if the right patient profile is selected."
+          end
+        else
           node.send(tmpFile.tempfile.path)
           sleep 2
+          debugger
           @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
-          existing_record.update_attributes(:updated_at => DateTime.now, :num_instances => @study.num_instances )
-        else
-          flash[:danger] = "File not uploaded due to redunduncy!! Please check if the right patient profile is selected."
+          # @study.save
+          if @study.save
+            format.html {
+              render :json => [@study.to_jq_upload].to_json,
+              :content_type => 'text/html',
+              :layout => false
+            }
+            format.json { render json: {files: [@study.to_jq_upload]}, status: :created, location: @study }
+          else
+            format.html { render action: "new" }
+            format.json { render json: @study.errors, status: :unprocessable_entity }
+          end
         end
-      else
-        node.send(tmpFile.tempfile.path)
-        sleep 2
-        debugger
-        @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
-        @study.save
       end
     end
     redirect_to :back

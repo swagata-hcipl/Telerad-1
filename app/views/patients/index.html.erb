@@ -13,7 +13,9 @@
   <thead>
     <tr>
       <th>Study ID</th>
+      <th>Images</th>
       <th>Created at</th>
+      <th>Updated at</th>
       <th>Comments</th>
       <th>Viewer</th>
     </tr>
@@ -22,7 +24,9 @@
     <% @studies.each do |study| %>
     <tr>
       <td><%= study.study_uid %></td>
+      <td><%= study.num_instances %></td>
       <td><%= study.created_at %></td>
+      <td><%= study.updated_at %></td>
       <td><%= link_to "Comments","" %></td>
       <td><%= link_to "View Study","" %></td>
     </tr>

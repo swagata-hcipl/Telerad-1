@@ -1,56 +1,35 @@
-<body>
-  <div class="container">
-    <div class="row">
-      <div class = "col-md-12">
-        <% if session[:user_id] %>
-          <%= link_to "Logout", {controller: :sessions, action: :destroy} %>
-        <% end %>
-        <% if flash[:color]== "valid" %>
-          <div class="alert alert-success">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <p><%= flash[:notice]%></p>
-          </div>
-        <% elsif flash[:color]== "invalid"%>
-          <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <p><%=flash[:notice]%></p>
-          </div>
-        <%end%>
-    </div>
-  </div>
-</div>
+
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h4>Patients</h4>
+<div class="row">
+<div class="col-md-12">
+<h4>Patients</h4>
 <%= link_to "+patient", {:controller => 'patients', :action => 'new'}, :class => "btn btn-primary" %><br/>
 <table id="patientsTable" class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>DOB</th>
-      <th>Gender</th>
-      <th>Pincode</th>
-      <th>Edit</th>
-      <th>Studies</th>
-    </tr>
-  </thead>
-  <% @patients.each do |patient| %>
-  <tbody>
-  <tr>
-    <td><%= patient.name %></td>
-    <td><%= patient.address %></td>
-    <td><%= patient.dob %></td>
-    <td><%= patient.gender %></td>
-    <td><%= patient.pincode %></td>
-    <td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :class => "btn btn-primary" %></td>
-    <td><%= link_to "Studies",{:controller=>'patients',:action => 'index',:id => patient.id}, :class => "btn btn-primary" %></td>
-  </tr>
-  <% end %>
+<thead>
+<tr>
+<th>Name</th>
+<th>Address</th>
+<th>DOB</th>
+<th>Gender</th>
+<th>Pincode</th>
+<th>Edit</th>
+<th>Studies</th>
+</tr>
+</thead>
+<% @patients.each do |patient| %>
+<tbody>
+<tr>
+<td><%= patient.name %></td>
+<td><%= patient.address %></td>
+<td><%= patient.dob %></td>
+<td><%= patient.gender %></td>
+<td><%= patient.pincode %></td>
+<td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :class => "btn btn-primary" %></td>
+<td><%= link_to "Studies",{:controller=>'patients',:action => 'index',:id => patient.id}, :class => "btn btn-primary" %></td>
+</tr>
+<% end %>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-

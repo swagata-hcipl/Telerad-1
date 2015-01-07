@@ -1,42 +1,35 @@
-# MySQL.  Versions 4.1 and 5.0 are recommended.
+# MySQL. Versions 4.1 and 5.0 are recommended.
 #
 # Install the MYSQL driver
-#   gem install mysql2
+# gem install mysql2
 #
 # Ensure the MySQL gem is defined in your Gemfile
-#   gem 'mysql2'
+# gem 'mysql2'
 #
 # And be sure to use new-style password hashing:
-#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-development:
+# http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+
+default: &default
   adapter: mysql2
   encoding: utf8
-  database: telerad_development
   pool: 5
   username: telerad-rails
   password: mourocky
   socket: /var/run/mysqld/mysqld.sock
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+development:
+  <<: *default
+  database: telerad_development
+
+
 test:
-  adapter: mysql2
-  encoding: utf8
+  <<: *default
   database: telerad_test
-  pool: 5
-  username: telerad-rails
-  password: mourocky
-  socket: /var/run/mysqld/mysqld.sock
 
 production:
-  adapter: mysql2
-  encoding: utf8
+  <<: *default
   database: telerad_production
-  pool: 5
-  username: telerad-rails
-  password: mourocky
-  socket: /var/run/mysqld/mysqld.sock
+
 
 pacs_development:
   adapter: mysql2
@@ -46,3 +39,5 @@ pacs_development:
   username: pacs
   password: pacs
   socket: /var/run/mysqld/mysqld.sock
+
+

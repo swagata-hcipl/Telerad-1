@@ -1,36 +1,221 @@
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+  <!-- BEGIN HEADER INNER -->
+  <div class="page-header-inner">
+    <!-- BEGIN LOGO -->
+    <div class="page-logo">
+      <%= link_to(:controller => "users", :action => :index) do %>
+      <img src="assets/assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
+      <% end%>
+      <div class="menu-toggler sidebar-toggler hide">
+        <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+      </div>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+    </a>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <!-- BEGIN TOP NAVIGATION MENU -->
+    <div class="top-menu">
+      <ul class="nav navbar-nav pull-right">              
+        <!-- BEGIN USER LOGIN DROPDOWN -->
+        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+        <li class="dropdown dropdown-user">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+          <!-- <img alt="" class="img-circle" src="assets/admin/layout/img/avatar3_small.jpg"/>-->
+          <i class="glyphicon glyphicon-cog"></i>
+          <i class="fa fa-angle-down"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-default">
+            <li>
+              <%= link_to :logout, :method => :delete do %>
+              <i class="icon-key"></i>Logout
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <!-- END USER LOGIN DROPDOWN -->        
+      </ul>
+    </div>
+    <!-- END TOP NAVIGATION MENU -->
+  </div>
+  <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<!-- <div class="clearfix">
+</div> -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+  <!-- BEGIN SIDEBAR -->
+  <div class="page-sidebar-wrapper">
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <div class="page-sidebar navbar-collapse collapse">
+      <!-- BEGIN SIDEBAR MENU -->
+      <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+      <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+      <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+      <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+      <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+      <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+      <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+        <li class="sidebar-toggler-wrapper">
+          <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+          <div class="sidebar-toggler">
+          </div>
+          <!-- END SIDEBAR TOGGLER BUTTON -->
+        </li>
+        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+        
+        <li class="start ">
+          <%= link_to(:controller => "users", :action => :index) do %>
+            <i class="icon-user"></i>
+            <span class="title">Patients</span>
+            <span class="arrow "></span>
+          <% end%>
+        </li>
+        <li class="start ">
+          <a href="">
+          <i class="icon-bag"></i>
+          <span class="title">Orders</span>
+          <span class="arrow "></span>
+          </a>          
+        </li> 
+        <li class="start ">
+          <a href="">
+          <i class="icon-docs"></i>
+          <span class="title">Report</span>
+          <span class="arrow "></span>
+          </a>          
+        </li>
+                <li class="start ">
+          <a href="">
+          <i class="icon-layers"></i>
+          <span class="title">Profile</span>
+          <span class="arrow "></span>
+          </a>          
+        </li>     
+      </ul>
+      <!-- END SIDEBAR MENU -->
+    </div>
+  </div>
+  <!-- END SIDEBAR -->
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+      <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+              <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+               Widget settings form goes here
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn blue">Save changes</button>
+              <button type="button" class="btn default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->    
+      <!-- BEGIN PAGE HEADER-->
+      <h3 class="page-title">
+      <%= current_user.name %>
+      </h3>
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li>
+            <i class="fa fa-home"></i>
+            <a href="#">Patient List</a>          
+          </li>         
+        </ul>
+      </div>
+      <!-- END PAGE HEADER-->
+      <!-- BEGIN PAGE CONTENT-->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN EXAMPLE TABLE PORTLET-->
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-globe"></i>Patient Lists
+              </div>              
+            </div>
+            <div class="portlet-body">
+              
+              <table id="patientsTable" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>DOB</th>
+                  <th>Gender</th>
+                  <th>Pincode</th>
+                  <th>Edit</th>
+                  <th>Studies</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @patients.each do |patient| %>
+              <tr>
+                <td><%= patient.name %></td>
+                <td><%= patient.address %></td>
+                <td><%= patient.dob %></td>
+                <td><%= patient.gender %></td>
+                <td><%= patient.pincode %></td>
+                <td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :remote => true, 'data-type' => :script, :class => "patient_edit btn btn-primary btn-sm" %></td>
+                <td><%= link_to "Studies",{:controller=>'patients',:action => 'index',:id => patient.id}, :class => "btn btn-primary btn-sm" %></td>
+              </tr>
+              <% end %>
+            </tbody>
+            </table>                                        
+            </div>
+          </div>    
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h4>Patients</h4>
-<%= link_to "+patient", {:controller => 'patients', :action => 'new'}, :class => "btn btn-primary" %><br/>
-<table id="patientsTable" class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>DOB</th>
-      <th>Gender</th>
-      <th>Pincode</th>
-      <th>Edit</th>
-      <th>Studies</th>
-    </tr>
-  </thead>
-  <% @patients.each do |patient| %>
-  <tbody>
-  <tr>
-    <td><%= patient.name %></td>
-    <td><%= patient.address %></td>
-    <td><%= patient.dob %></td>
-    <td><%= patient.gender %></td>
-    <td><%= patient.pincode %></td>
-    <td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :class => "btn btn-primary" %></td>
-    <td><%= link_to "Studies",{:controller=>'patients',:action => 'index',:id => patient.id}, :class => "btn btn-primary" %></td>
-  </tr>
-  <% end %>
-</tbody>
-</table>
+            <%= link_to "+patient", '#newPatientModal', :class => "btn btn-primary", :'data-toggle' => 'modal' %><br/>
+            <%= render partial: 'patients/new', locals: {patient: @patient} %>
+            <div id="editPatient"></div>
+
+        </div>
+      </div>
+      <!-- END PAGE CONTENT-->
+    </div>
+  </div>
+  <!-- END CONTENT -->
+  
 </div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+  <div class="page-footer-inner">
+     2014 &copy; Telehealthindia.com | All Rights Reserved.
+  </div>
+  <div class="scroll-to-top">
+    <i class="icon-arrow-up"></i>
+  </div>
 </div>
-</div>
+<!-- END FOOTER -->
+<%= javascript_tag("
+      $('#patientsTable').DataTable();
+") %>
+
+<%#= javascript_tag("
+  $('.patient_edit').bind('ajax:success', function(data, status, xhr) {
+    $('#editPatientModal').modal('show');
+    $('[name=\"patient[name]\"]').val(status.name);
+    $('[name=\"patient[address]\"]').val(status.address);
+    $('[name=\"patient[gender]\"]').val(status.gender);
+    $('[name=\"patient[dob]\"]').val(status.dob);
+    $('[name=\"patient[pincode]\"]').val(status.pincode);
+  });
+") %>
+
 

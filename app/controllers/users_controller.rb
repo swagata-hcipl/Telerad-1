@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user
 
   def index
+    @patient = Patient.new
     @patients = current_user.patients.uniq
   end
 
@@ -40,3 +41,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :gateway, :gateway_type, :password, :password_confirmation)
   end
 end
+

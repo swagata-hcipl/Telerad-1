@@ -1,0 +1,38 @@
+<div>
+  <div class="modal fade" id="newPatientModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Patient</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(patient, remote: true, :url => {:controller => 'patients', :action => 'create'}) do |f| %>
+        <p> Name:</br> <%= f.text_field :name, value: "", id: 'patientName', :minlength => 6 %> </p>
+        <p> Address:</br> <%= f.text_field :address, value: "", :minlength => 6 %> </p>
+        <p> Gender:</br> <%= f.select :gender, options_for_select([['Male','Male'],['Female','Female'],['Others','Others']])%> </p>
+        <p> DOB:</br> <%#= f.date_select :dob, :use_two_digit_numbers => true, :start_year => 1900, :end_year => Date.current.year %></p>
+        <div class="input-group input-medium date date-picker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+          <%= f.text_field :dob, :html => {:class=>'form-control' 'readonly' 'required'} %>
+            <span class="input-group-btn">
+              <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+            </span>
+        </div>
+        <p> Pincode:</br> <%= f.text_field :pincode, value: "" %> </p>
+        <%= f.submit :Create %>
+        <% end %>
+        <% if patient.errors.any? %>
+        <ul class="Signup_Errors">
+        <% for message_error in patient.errors.full_messages %>
+        <li>* <%= message_error %></li>
+        <% end %>
+        </ul>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

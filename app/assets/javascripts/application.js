@@ -20,5 +20,5 @@
 //= require bootstrap-sprockets
 //= require jquery-fileupload
 //= require jquery.uploadify.min
+//= require nprogress.js
 //= require_tree .
-

@@ -33,5 +33,7 @@
  *= require assets/admin/layout/css/layout
  *= require assets/admin/layout/css/themes/default
  *= require assets/admin/layout/css/custom
+ *= require nprogress.css
+ *= require jquery.fileupload-ui
  *= require_tree .
  */

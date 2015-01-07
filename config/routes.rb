@@ -14,6 +14,6 @@ Telerad::Application.routes.draw do
 
   resources :users
   resources :patients
-  resources :studies, only: [:new, :create]
+  resources :studies
 
 end

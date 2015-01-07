@@ -6,11 +6,10 @@ class Study < ActiveRecord::Base
 	def to_jq_upload
     {
       "id" => self.id,
-      "name" => read_attribute(:upload_file_name),
-      "size" => read_attribute(:upload_file_size),
-      "url" => upload.url(:original),
-      "delete_url" => upload_path(self),
-      "delete_type" => "DELETE"
+      "desc" => self.study_table.study_desc,
+      "num_instances" => read_attribute(:num_instances),
+      "conductedOn" => self.study_table.study_datetime,
+      "updatedOn" => read_attribute(:updated_at)
     }
   end
 end

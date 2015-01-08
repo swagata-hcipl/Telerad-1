@@ -11,7 +11,6 @@ class StudyDatatable < AjaxDatatablesRails::Base
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
     @sortable_columns ||= [
-      'studies.num_instances',
       'studies.updated_at'
     ]
   end
@@ -31,7 +30,7 @@ class StudyDatatable < AjaxDatatablesRails::Base
     records.map do |record|
       [
         record.study_table.study_desc,
-        record.num_instances,
+        record.study_table.num_instances,
         record.study_table.study_datetime,
         record.updated_at,
         link_to("Comments",""),

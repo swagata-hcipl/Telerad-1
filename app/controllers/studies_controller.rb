@@ -24,8 +24,8 @@ class StudiesController < ApplicationController
       if !existing_record.nil?
         if existing_record[:patient_id] == @study.patient_id
           node.send(tmpFile.tempfile.path)
-          sleep 2
-          @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
+          # sleep 1
+          # @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
           respond_to do |format|
             if existing_record.update_attributes(:updated_at => DateTime.now, :num_instances => @study.num_instances )
               format.html {
@@ -44,8 +44,8 @@ class StudiesController < ApplicationController
         end
       else
         node.send(tmpFile.tempfile.path)
-        sleep 2
-        @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
+        # sleep 1
+        # @study.num_instances = StudyTable.find_by(study_iuid: @study.study_uid )[:num_instances]
         # @study.save
         respond_to do |format|
           if @study.save

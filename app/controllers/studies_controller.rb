@@ -3,6 +3,10 @@ include DICOM
 
 class StudiesController < ApplicationController
 
+  def index
+
+  end
+
   def new
   	@study = Study.new
   	respond_to do |format|

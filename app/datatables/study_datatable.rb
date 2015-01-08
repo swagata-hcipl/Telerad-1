@@ -34,7 +34,7 @@
         record.num_instances,
         record.study_table.study_datetime,
         record.updated_at,
-        link_to("Comments",""),
+        link_to("Comments",{controller: :comments,action: :new}),
         link_to("View Study", "http://localhost:8080/weasis/samples/applet.jsp?commands=%24dicom%3Aget%20-w%20http%3A//localhost%3A8080/weasis-pacs-connector/manifest%3FstudyUID%3D"+record.study_uid)
       ]
     end

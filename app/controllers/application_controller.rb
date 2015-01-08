@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
 
   protected
     def authenticate_user
-      debugger
       if session[:user_id]
         @current_user = User.find session[:user_id]
       else

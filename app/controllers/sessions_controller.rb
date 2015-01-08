@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     else
       flash[:notice] = "Invalid Username or Password"
       flash[:color]= "invalid"
-      render "login"  
+      render "new"  
     end
   end
 

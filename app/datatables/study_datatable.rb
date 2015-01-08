@@ -30,11 +30,11 @@ class StudyDatatable < AjaxDatatablesRails::Base
     records.map do |record|
       [
         record.study_table.study_desc,
-        record.study_table.num_instances,
+        StudyTable.find_by(study_iuid: record.study_uid)[:num_instances],
         record.study_table.study_datetime,
         record.updated_at,
-        link_to("Comments",""),
-        link_to("View Study", "http://localhost:8080/weasis/samples/applet.jsp?commands=%24dicom%3Aget%20-w%20http%3A//localhost%3A8080/weasis-pacs-connector/manifest%3FstudyUID%3D"+record.study_uid)
+        link_to("Comments",{:controller=>"comments", :action => "show",:id => record.id}, 'data-toggle' => "modal", 'data-target'=>"#exampleModal", :remote => true),
+        link_to("View Study", "http://localhost:8080/weasis/samples/applet.jsp?commands=%24dicom%3Aget%20-w%20http%3A//localhost%3A8080/weasis-pacs-connector/manifest%3FstudyUID%3D"+record.study_uid,  target: "_blank")
       ]
     end
   end

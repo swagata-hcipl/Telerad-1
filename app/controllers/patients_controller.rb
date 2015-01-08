@@ -1,15 +1,6 @@
 class PatientsController < ApplicationController
   before_filter :authenticate_user
 
-  def index
-    @study = current_user.studies.new(:patient => Patient.find(params[:id]))
-    # @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
-    respond_to do |format|
-      format.html
-      format.json { render json: StudyDatatable.new(view_context) }
-    end
-  end
-
   def new
     @patient = Patient.new
   end
@@ -24,6 +15,15 @@ class PatientsController < ApplicationController
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
       render "new"
+    end
+  end
+
+  def show
+    @study = current_user.studies.new(:patient => Patient.find(params[:id]))
+    # @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
+    respond_to do |format|
+      format.html 
+      format.json { render json: StudyDatatable.new(view_context) }
     end
   end
 

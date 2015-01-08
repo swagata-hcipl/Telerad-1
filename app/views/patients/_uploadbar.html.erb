@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for @study, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+  <%= form_for study, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="row fileupload-buttonbar">
       <div class="span7">
@@ -9,7 +9,7 @@
           <span>Add</span>
           <%= f.file_field :upload, :multiple => true %>
         </span>
-        <%= f.hidden_field :patient_id, :value => @study[:patient_id] %>
+        <%= f.hidden_field :patient_id, :value => study[:patient_id] %>
         <button type="submit" class="btn btn-primary start">
           <i class="icon-upload icon-white"></i>
           <span>upload</span>

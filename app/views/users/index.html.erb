@@ -25,7 +25,7 @@
 <td><%= patient.gender %></td>
 <td><%= patient.pincode %></td>
 <td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :class => "btn btn-primary" %></td>
-<td><%= link_to "Studies",{:controller=>'patients',:action => 'index',:id => patient.id}, :class => "btn btn-primary" %></td>
+<td><%= link_to "Studies",{:controller=>'patients',:action => 'show',:id => patient.id}, :class => "btn btn-primary" %></td>
 </tr>
 <% end %>
 </tbody>

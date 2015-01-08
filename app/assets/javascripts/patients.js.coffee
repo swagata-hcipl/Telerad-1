@@ -1,11 +1,8 @@
-jQuery ->
+table_ready = ->
   'use strict'
   # Initialize the jQuery File Upload widget:
   $("#fileupload").fileupload sequentialUploads: true
   #acceptFileTypes: '/(\.|\/)(dcm|dicom| )$/i'
-  # $("#fileupload").bind "fileuploaddone", (e, data) ->
-  #   console.log(data.result)
-  #   oTable.ajax.reload()
 
   $.getJSON $("#fileupload").prop("action"), (files) ->
     fu = $("#fileupload").data("blueimp-fileupload")
@@ -41,8 +38,10 @@ jQuery ->
         }
       ]
     }
-  return
+  $("#fileupload").bind "fileuploadfail", (e, data) ->
+    oTable.ajax.reload()
+  $("#fileupload").bind "fileuploaddone", (e, data) ->
+    oTable.ajax.reload()
 
-# $(document).ready table_ready
-
-# $(document).on "page:load", table_ready
+$(document).ready table_ready
+$(document).on "page:load", table_ready

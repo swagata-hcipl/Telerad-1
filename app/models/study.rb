@@ -7,7 +7,7 @@ class Study < ActiveRecord::Base
     {
       "id" => self.id,
       "desc" => self.study_table.study_desc,
-      "num_instances" => read_attribute(:num_instances),
+      "num_instances" => self.study_table.num_instances,
       "conductedOn" => self.study_table.study_datetime,
       "updatedOn" => read_attribute(:updated_at)
     }

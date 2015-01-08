@@ -1,4 +1,4 @@
-class StudyDatatable < AjaxDatatablesRails::Base
+  class StudyDatatable < AjaxDatatablesRails::Base
   # uncomment the appropriate paginator module,
   # depending on gems available in your project.
   # include AjaxDatatablesRails::Extensions::Kaminari

@@ -1,29 +1,73 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-<%= link_to "List", {:controller => "users", :action => :index}, :class => "btn btn-primary" %>
-<div class="container">
-  <%#= form_for @study do |f| %>
-    <%#= f.file_field :dicom_file_upload, :multiple => true %>
-    <%#= f.hidden_field :patient_id, :value => @study[:patient_id] %>
-    <%#= f.submit "Upload", :disable_with => 'Uploading...' %>
-   <%# end %>
+<%= render partial: "header" %> 
+
+<!-- <div class="clearfix">
+</div> -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+  <%= render partial: "side_bar" %> 
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+          <!-- BEGIN PAGE HEADER-->
+        <h3 class="page-title">
+      <%= current_user.name %>
+      </h3>
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li>
+            <i class="fa fa-home"></i>
+            <%= link_to "Patient List", {:controller => "users", :action => :index}%> 
+            <i class="fa fa-angle-right"></i>        
+          </li> 
+          <li>
+            <%= link_to "Study List:"+@patient.name, {:controller => "users", :action => :index} %>
+          </li>           
+        </ul>
+      </div>
+      <!-- END PAGE HEADER-->   
+      <%= render 'uploadbar' %>      
+      <!-- BEGIN PAGE CONTENT-->
+      <div class="row">
+        <div class="col-md-12">
+
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
+          
+          <!-- BEGIN EXAMPLE TABLE PORTLET-->
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-globe"></i>Files Lists
+              </div>              
+            </div>
+            <div class="portlet-body">
+            <table id="studiesTable" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Images</th>
+                  <th>Conducted on</th>
+                  <th>Updated on</th>
+                  <th>Comments</th>
+                  <th>Viewer</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </br></br>
+            </div>
+          </div>                    
+          <!-- END EXAMPLE TABLE PORTLET--> 
+        </div>
+      </div>
+      <!-- END PAGE CONTENT-->
+    </div>
+  </div>
+  <!-- END CONTENT -->
 </div>
-<%= render 'uploadbar' %>
-<table id="studiesTable" class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Images</th>
-      <th>Conducted on</th>
-      <th>Updated on</th>
-      <th>Comments</th>
-      <th>Viewer</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
+<!-- END CONTAINER -->
+
+<%= render partial: "footer" %> 
+

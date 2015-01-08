@@ -1,4 +1,4 @@
-jQuery ->
+table_ready = ->
   'use strict'
   # Initialize the jQuery File Upload widget:
   $("#fileupload").fileupload sequentialUploads: true
@@ -43,6 +43,6 @@ jQuery ->
     }
   return
 
-# $(document).ready table_ready
+$(document).ready table_ready
 
-# $(document).on "page:load", table_ready
+$(document).on "page:load", table_ready

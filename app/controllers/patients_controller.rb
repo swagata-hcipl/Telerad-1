@@ -5,7 +5,8 @@ class PatientsController < ApplicationController
 
 
   def index
-    @study = current_user.studies.new(:patient => Patient.find(params[:id]))
+    @patient = Patient.find(params[:id])
+    @study = current_user.studies.new(:patient => @patient)
     # @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
     respond_to do |format|
       format.html

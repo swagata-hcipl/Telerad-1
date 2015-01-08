@@ -14,8 +14,7 @@ class StudiesController < ApplicationController
   def create
     @study = current_user.studies.new
     uploaded_io = params[:study][:upload]
-    node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
-        
+    node = DClient.new("192.168.1.2", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
     uploaded_io.each do |tmpFile|
       dcm = DObject.read(tmpFile.tempfile.path)
       @study.study_uid = dcm.value("0020,000D")
@@ -62,7 +61,6 @@ class StudiesController < ApplicationController
         end
       end
     end
-    redirect_to :back
 
     # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
     #   file.write(uploaded_io.read)

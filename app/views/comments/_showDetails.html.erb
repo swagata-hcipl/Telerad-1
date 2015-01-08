@@ -1,0 +1,11 @@
+
+<% comments.each do |comment|%>
+<pre> <b> <%= comment.comment %></b> on <i><%= comment.created_at %></i> by <i><%= by%></i> </pre>
+<% end %>
+
+<%= form_for(:comment, :url => {:controller => 'comments', :action => 'create'}, :remote => true) do |f| %>
+  <label for="comment-text" class="control-label">Comment:</label>
+  <%= f.text_area :comment, size: "60x12"%>
+  <%= f.hidden_field :study_id, value: params[:id]%>
+  <%= f.submit :Post, :button => 'btn btn-primary', id: "submit" %>
+<%end%>

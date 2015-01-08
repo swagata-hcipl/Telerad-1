@@ -15,7 +15,6 @@ class StudiesController < ApplicationController
     @study = current_user.studies.new
     uploaded_io = params[:study][:upload]
     node = DClient.new("192.168.1.13", 11112, ae: "HIPL", host_ae: "DCM4CHEE")
-        
     uploaded_io.each do |tmpFile|
       dcm = DObject.read(tmpFile.tempfile.path)
       @study.study_uid = dcm.value("0020,000D")
@@ -79,4 +78,3 @@ class StudiesController < ApplicationController
     end
 
 end
-

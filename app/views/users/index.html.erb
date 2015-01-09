@@ -22,6 +22,7 @@
         </ul>
       </div>
       <!-- END PAGE HEADER-->
+      <%= render partial: "patients/flash" %>
       <!-- BEGIN PAGE CONTENT-->
       <div class="row">
         <div class="col-md-12">
@@ -55,7 +56,7 @@
                 <td><%= patient.gender %></td>
                 <td><%= patient.pincode %></td>
                 <td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :remote => true, 'data-type' => :script, :class => "patient_edit btn btn-primary btn-sm" %></td>
-                <td><%= link_to "Studies",{:controller=>'patients',:action => 'index',:id => patient.id}, :class => "btn btn-primary btn-sm" %></td>
+                <td><%= link_to "Studies",{:controller=>'patients',:action => 'show',:id => patient.id}, :class => "btn btn-primary btn-sm" %></td>
               </tr>
               <% end %>
             </tbody>

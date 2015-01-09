@@ -17,9 +17,8 @@ class ApplicationController < ActionController::Base
       if session[:user_id]
         @current_user = User.find session[:user_id]
       else
-        flash[:notice] = "Black Sheep, Hahahahaha!"
-        flash[:color]= "invalid"
-        redirect_to(:login)
+        flash[:danger] = "Black Sheep, Hahahahaha!"
+        redirect_to root_path
       end
     end
 

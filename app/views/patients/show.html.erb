@@ -24,16 +24,12 @@
           </li>           
         </ul>
       </div>
-      <!-- END PAGE HEADER-->   
-      <%= render 'uploadbar' %>      
+      <!-- END PAGE HEADER-->     
+      <%= render partial: "flash" %> 
       <!-- BEGIN PAGE CONTENT-->
+      <%= render partial: 'uploadbar', locals: {study: @study} %> 
       <div class="row">
-        <div class="col-md-12">
-
-          <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>"><%= message %></div>
-          <% end %>
-          
+        <div class="col-md-12">          
           <!-- BEGIN EXAMPLE TABLE PORTLET-->
           <div class="portlet box blue">
             <div class="portlet-title">
@@ -42,7 +38,7 @@
               </div>              
             </div>
             <div class="portlet-body">
-            <table id="studiesTable" class="table table-bordered">
+            <table id="studiesTable" class="table table-bordered" data-source="<%= patient_path(format: :json) %>">
               <thead>
                 <tr>
                   <th>Description</th>
@@ -60,6 +56,7 @@
             </div>
           </div>                    
           <!-- END EXAMPLE TABLE PORTLET--> 
+          <%= render partial: 'comments/show'%>
         </div>
       </div>
       <!-- END PAGE CONTENT-->

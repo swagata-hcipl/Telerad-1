@@ -4,15 +4,15 @@ class PatientsController < ApplicationController
   before_filter :authenticate_user, except: :emr
 
 
-  def index
-    @patient = Patient.find(params[:id])
-    @study = current_user.studies.new(:patient => @patient)
-    # @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
-    respond_to do |format|
-      format.html
-      format.json { render json: StudyDatatable.new(view_context) }
-    end
-  end
+  # def index
+  #   @patient = Patient.find(params[:id])
+  #   @study = current_user.studies.new(:patient => @patient)
+  #   # @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
+  #   respond_to do |format|
+  #     format.html
+  #     format.json { render json: StudyDatatable.new(view_context) }
+  #   end
+  # end
 
   def new
     @patient = Patient.new
@@ -23,21 +23,29 @@ class PatientsController < ApplicationController
     end
   end
 
+def show
+  @patient = Patient.find(params[:id])
+  @study = current_user.studies.new(:patient => Patient.find(params[:id]))
+  # @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
+  respond_to do |format|
+    format.html 
+    format.json { render json: StudyDatatable.new(view_context) }
+  end
+end
+
   def create
     @patient = current_user.patients.create(patient_params)
     respond_to do |format|
       if @patient
         format.html {
-          flash[:notice] = "Patient Created successfully"
-          flash[:color]= "valid"
+          flash[:success] = "Patient Created successfully"
           redirect_to(:controller => 'users', :action => 'index')  
         }
         format.json { render json: @patient }
         format.js
       else
         format.html {
-          flash[:notice] = "Form is invalid"
-          flash[:color]= "invalid"
+          flash[:danger] = "Form is invalid"
           render "new" 
         }
         format.json { render json: @patient.errors }
@@ -48,20 +56,17 @@ class PatientsController < ApplicationController
 
   def edit
     @patient = current_user.patients.find(params[:id])
-    debugger
     respond_to do |format|
       if @patient
         format.html {
-          flash[:notice] = "Black Sheeep, hahahahahaha!"
-          flash[:color]= "invalid"
+          flash[:danger] = "Black Sheeep, hahahahahaha!"
           redirect_to :controller => 'users', :action => 'index'  
         }
         format.json { render json: @patient }
         format.js
       else
         format.html {
-          flash[:notice] = "Form is invalid"
-          flash[:color]= "invalid"
+          flash[:danger] = "Form is invalid"
           render "edit" 
         }
         format.json { render json: @patient.errors }
@@ -75,16 +80,14 @@ class PatientsController < ApplicationController
     respond_to do |format|
       if @patient.update_attributes(patient_params)
         format.html {
-          flash[:notice] = "Patient Updated successfully"
-          flash[:color]= "valid"
+          flash[:success] = "Patient Updated successfully"
           redirect_to(:controller => 'users', :action => 'index')  
         }
         format.json { render json: @patient }
         format.js
       else
         format.html {
-          flash[:notice] = "Form is invalid"
-          flash[:color]= "invalid"
+          flash[:danger] = "Form is invalid"
           render "edit"  
         }
         format.json { render json: @patient.errors }
@@ -112,18 +115,15 @@ class PatientsController < ApplicationController
           render :action => :index
           # render :action => :index
         else
-          flash[:notice] = "EMR patient unsuccessful"
-          flash[:color]= "invalid"
+          flash[:danger] = "EMR patient unsuccessful"
           redirect_to(:login)
         end
       else
-        flash[:notice] = "Current user not found"
-        flash[:color]= "invalid"
+        flash[:danger] = "Current user not found"
         redirect_to(:signup)
       end
     else
-      flash[:notice] = "Black Sheep, Ha Hahahahaha!"
-      flash[:color]= "invalid"
+      flash[:danger] = "Black Sheep, Ha Hahahahaha!"
       redirect_to(:login)
     end
   end

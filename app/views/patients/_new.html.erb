@@ -7,18 +7,18 @@
         <h4 class="modal-title" id="myModalLabel">New Patient</h4>
       </div>
       <div class="modal-body">
-        <%= form_for(patient, remote: true, :url => {:controller => 'patients', :action => 'create'}) do |f| %>
-        <p> Name:</br> <%= f.text_field :name, value: "", id: 'patientName', :minlength => 6 %> </p>
-        <p> Address:</br> <%= f.text_field :address, value: "", :minlength => 6 %> </p>
+        <%= form_for(patient, remote: true, :url => {:controller => 'patients', :action => 'create'}, :html => { :id => "new_patient_form" }) do |f| %>
+        <p> Name:</br> <%= f.text_field :name, :required => true, value: "", id: 'patientName', :minlength => 6 %> </p>
+        <p> Address:</br> <%= f.text_field :address, :required => true, value: "", :minlength => 6 %> </p>
         <p> Gender:</br> <%= f.select :gender, options_for_select([['Male','Male'],['Female','Female'],['Others','Others']])%> </p>
         <p> DOB:</br> <%#= f.date_select :dob, :use_two_digit_numbers => true, :start_year => 1900, :end_year => Date.current.year %></p>
         <div class="input-group input-medium date date-picker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
-          <%= f.text_field :dob, :html => {:class=>'form-control' 'readonly' 'required'} %>
+          <%= f.text_field :dob, :required => true, :html => {:class=>'form-control' 'readonly' 'required'} %>
             <span class="input-group-btn">
               <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
             </span>
         </div>
-        <p> Pincode:</br> <%= f.text_field :pincode, value: "" %> </p>
+        <p> Pincode:</br> <%= f.text_field :pincode, :required => true, value: "" %> </p>
         <%= f.submit :Create %>
         <% end %>
         <% if patient.errors.any? %>
@@ -28,6 +28,9 @@
         <% end %>
         </ul>
         <% end %>
+        <script>
+          $('#new_patient_form').validate();
+        </script>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

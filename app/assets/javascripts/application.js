@@ -18,7 +18,6 @@
 //= require assets/global/plugins/jquery-validation/js/jquery.validate.min
 //= require dataTables/extras/dataTables.tableTools
 //= require turbolinks
-//= require bootstrap-sprockets
 //= require jquery-fileupload
 //= require jquery.uploadify.min
 //= require nprogress.js

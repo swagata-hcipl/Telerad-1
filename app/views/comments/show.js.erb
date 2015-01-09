@@ -1,0 +1,2 @@
+$('#commentModal .modal-body').html('<%= escape_javascript(render :partial => "showDetails", :locals => { id: @study.id, comments: @comments, by: current_user.name }) %>');
+$("#commentModal").modal('show');

@@ -48,6 +48,7 @@ class PatientsController < ApplicationController
 
   def edit
     @patient = current_user.patients.find(params[:id])
+    debugger
     respond_to do |format|
       if @patient
         format.html {

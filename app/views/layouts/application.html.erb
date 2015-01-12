@@ -11,26 +11,92 @@
 <!-- BEGIN HEAD -->
 <head>
   <title>Telerad</title>
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+  <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/> -->
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <div class="container">
+<body class="<%= session[:user_id] ? "page-header-fixed page-quick-sidebar-over-content" : "login" %>" >
+  <!-- <div class="container">
     <div class="row">
-      <div class = "col-md-12">
-        <% if session[:user_id] %>
-          <%= link_to "Logout", :logout, :method => :delete %>
-        <% end %>
-        <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
+      <div class = "col-md-12"> -->
+        <%# if session[:user_id] %>
+          <%#= link_to "Logout", :logout, :method => :delete %>
+        <%# end %>
+        <%# if flash[:color]== "valid" %>
+          <!-- <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <p> --> <%#= flash[:notice]%><!-- </p>
+          </div> -->
+        <%# elsif flash[:color]== "invalid"%>
+          <!-- <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <p> --><%# =flash[:notice]%><!-- </p>
+          </div>
+        <%#end%>
     </div>
 
   </div>
-</div>
+</div> -->
 <%= yield %>
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="../../assets/global/plugins/respond.min.js"></script>
+<script src="../../assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<%#= javascript_include_tag 'assets/global/plugins/jquery.min' %>
+<%= javascript_include_tag 'assets/global/plugins/jquery-migrate.min' %>
+<%= javascript_include_tag 'assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min' %>
+<%#= javascript_include_tag 'assets/global/plugins/bootstrap/js/bootstrap.min' %>
+<%= javascript_include_tag 'assets/global/plugins/jquery.blockui.min' %>
+<%= javascript_include_tag 'assets/global/plugins/jquery.cokie.min' %>
+<%= javascript_include_tag 'assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min' %>
+<%= javascript_include_tag 'assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min' %>
+<%= javascript_include_tag 'assets/global/plugins/uniform/jquery.uniform.min' %>
+<%= javascript_include_tag 'assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min' %>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+<%= javascript_include_tag 'assets/global/plugins/jquery-validation/js/jquery.validate.min' %>
+<%= javascript_include_tag 'assets/global/plugins/select2/select2.min' %>
+<%#= javascript_include_tag 'assets/global/plugins/datatables/media/js/jquery.dataTables.min' %>
+<%= javascript_include_tag 'assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools' %>
+<%= javascript_include_tag 'assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min' %>
+<%= javascript_include_tag 'assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min' %>
+<%#= javascript_include_tag 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap' %>
+<%= javascript_include_tag 'assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker' %>
+<%= javascript_include_tag 'assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min' %>
+<%= javascript_include_tag 'assets/global/plugins/clockface/js/clockface' %>
+<%= javascript_include_tag 'assets/global/plugins/bootstrap-daterangepicker/moment.min' %>
+<%= javascript_include_tag 'assets/global/plugins/bootstrap-daterangepicker/daterangepicker' %>
+<%= javascript_include_tag 'assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker' %>
+<%= javascript_include_tag 'assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min' %>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<%= javascript_include_tag 'assets/global/scripts/metronic' %>
+<%= javascript_include_tag 'assets/admin/layout/scripts/layout' %>
+<%= javascript_include_tag 'assets/admin/layout/scripts/quick-sidebar' %>
+<%= javascript_include_tag 'assets/admin/layout/scripts/demo' %>
+<%= javascript_include_tag 'assets/admin/pages/scripts/table-advanced' %>
+<%= javascript_include_tag 'assets/admin/pages/scripts/form-validation' %>
+<%= javascript_include_tag 'assets/admin/pages/scripts/components-pickers' %>
+    <!-- END PAGE LEVEL SCRIPTS -->
+<%= javascript_tag 'jQuery(document).ready(function() {     
+      Metronic.init(); // init metronic core components
+      Layout.init(); // init current layout
+      Demo.init(); // init demo features
+      QuickSidebar.init(); // init quick sidebar
+      ComponentsPickers.init();
+      // TableAdvanced.init(); 
+    });'
+%>
+<% if !session[:user_id] %>
+  <%= javascript_tag 'jQuery(document).ready(function() {
+        Login.init();
+      });'
+  %>
+<% end %>
 
+<!-- END JAVASCRIPTS -->
 </body>
 </html>

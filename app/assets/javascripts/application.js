@@ -16,6 +16,7 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require assets/global/plugins/jquery-validation/js/jquery.validate.min
+//= require dataTables/extras/dataTables.tableTools
 //= require turbolinks
 //= require jquery-fileupload
 //= require jquery.uploadify.min

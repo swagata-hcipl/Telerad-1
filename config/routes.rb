@@ -8,10 +8,11 @@ Telerad::Application.routes.draw do
 
   get 'comments/new'
   post 'comments/create'
-
-  #get 'comments/show' 
+  get 'comments/show'
 
   get 'studies/new'
+
+  post 'emr_patient' => 'patients#emr'
 
   resources :users
   resources :patients

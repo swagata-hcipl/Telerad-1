@@ -5,6 +5,7 @@ table_ready = ->
   #acceptFileTypes: '/(\.|\/)(dcm|dicom| )$/i'
 
   $.getJSON $("#fileupload").prop("action"), (files) ->
+    console.log("1")
     fu = $("#fileupload").data("blueimp-fileupload")
     template = undefined
     #        fu._adjustMaxNumberOfFiles(-files.length);

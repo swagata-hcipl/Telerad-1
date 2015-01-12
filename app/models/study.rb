@@ -1,9 +1,9 @@
 class Study < ActiveRecord::Base
-	belongs_to :patient
-	belongs_to :user
-	belongs_to :study_table, :foreign_key => :study_uid
+  belongs_to :patient
+  belongs_to :user
+  belongs_to :study_table, :foreign_key => :study_uid
 
-	def to_jq_upload
+  def to_jq_upload
     {
       "id" => self.id,
       "desc" => self.study_table.study_desc,

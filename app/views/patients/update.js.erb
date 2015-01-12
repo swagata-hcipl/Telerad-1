@@ -1,0 +1,5 @@
+jQuery(function($) {
+  alert("success");
+  $("#editPatientModal").modal('hide');
+  $('#patientsTable').dataTable().fnUpdate(["<%= @patient.name %>","<%= @patient.address %>","<%= @patient.dob %>","<%= @patient.gender %>","<%= @patient.pincode %>","<a class=\"btn btn-primary btn-sm\" href='/vendors/<%= @patient.id %>/edit' data-remote='true' data-type='script'>Edit</a>","<a class='btn btn-primary btn-sm' href='/patients?id=<%= @patient.id %>''>Studies</a>"],<%= @patient.id-1 %>);  
+});

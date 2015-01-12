@@ -1,35 +1,96 @@
+<%= render partial: "patients/header" %> 
 
-<div class="container">
-<div class="row">
-<div class="col-md-12">
-<h4>Patients</h4>
-<%= link_to "+patient", {:controller => 'patients', :action => 'new'}, :class => "btn btn-primary" %><br/>
-<table id="patientsTable" class="table table-bordered">
-<thead>
-<tr>
-<th>Name</th>
-<th>Address</th>
-<th>DOB</th>
-<th>Gender</th>
-<th>Pincode</th>
-<th>Edit</th>
-<th>Studies</th>
-</tr>
-</thead>
-<% @patients.each do |patient| %>
-<tbody>
-<tr>
-<td><%= patient.name %></td>
-<td><%= patient.address %></td>
-<td><%= patient.dob %></td>
-<td><%= patient.gender %></td>
-<td><%= patient.pincode %></td>
-<td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :class => "btn btn-primary" %></td>
-<td><%= link_to "Studies",{:controller=>'patients',:action => 'show',:id => patient.id}, :class => "btn btn-primary" %></td>
-</tr>
-<% end %>
-</tbody>
-</table>
+<!-- <div class="clearfix">
+</div> -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+  <%= render partial: "patients/side_bar" %> 
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+         
+      <!-- BEGIN PAGE HEADER-->
+      <h3 class="page-title">
+      <%= current_user.name %>
+      </h3>
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li>
+            <i class="fa fa-home"></i>
+            <%= link_to "Patient List", {:controller => "users", :action => :index}%>
+          </li>
+        </ul>
+      </div>
+      <!-- END PAGE HEADER-->
+      <%= render partial: "patients/flash" %>
+      <!-- BEGIN PAGE CONTENT-->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN EXAMPLE TABLE PORTLET-->
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-globe"></i>Patient Lists
+              </div>              
+            </div>
+            <div class="portlet-body">
+              
+              <table id="patientsTable" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>DOB</th>
+                  <th>Gender</th>
+                  <th>Pincode</th>
+                  <th>Edit</th>
+                  <th>Studies</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @patients.each do |patient| %>
+              <tr>
+                <td><%= patient.name %></td>
+                <td><%= patient.address %></td>
+                <td><%= patient.dob %></td>
+                <td><%= patient.gender %></td>
+                <td><%= patient.pincode %></td>
+                <td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :remote => true, 'data-type' => :script, :class => "patient_edit btn btn-primary btn-sm" %></td>
+                <td><%= link_to "Studies",{:controller=>'patients',:action => 'show',:id => patient.id}, :class => "btn btn-primary btn-sm" %></td>
+              </tr>
+              <% end %>
+            </tbody>
+            </table>                                        
+            </div>
+          </div>    
+
+            <%= link_to "+patient", '#newPatientModal', :class => "btn btn-primary", :'data-toggle' => 'modal' %><br/>
+            <%= render partial: 'patients/new', locals: {patient: @patient} %>
+            <div id="editPatient"></div>
+
+        </div>
+      </div>
+      <!-- END PAGE CONTENT-->
+    </div>
+  </div>
+  <!-- END CONTENT -->
+  
 </div>
-</div>
-</div>
+<!-- END CONTAINER -->
+
+<%= render partial: "patients/footer" %> 
+
+<%= javascript_tag("
+      $('#patientsTable').DataTable();
+") %>
+
+<%#= javascript_tag("
+  $('.patient_edit').bind('ajax:success', function(data, status, xhr) {
+    $('#editPatientModal').modal('show');
+    $('[name=\"patient[name]\"]').val(status.name);
+    $('[name=\"patient[address]\"]').val(status.address);
+    $('[name=\"patient[gender]\"]').val(status.gender);
+    $('[name=\"patient[dob]\"]').val(status.dob);
+    $('[name=\"patient[pincode]\"]').val(status.pincode);
+  });
+") %>

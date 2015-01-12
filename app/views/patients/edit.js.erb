@@ -1,0 +1,7 @@
+jQuery(function($) {
+  $("#editPatient").append("<%= escape_javascript(render(:partial => 'edit', :locals => {patient: @patient})) %>");
+  $("#editPatientModal").modal('show');
+  $('#editPatientModal').on('hide.bs.modal', function () {
+      $('#editPatient').empty();
+    });
+});

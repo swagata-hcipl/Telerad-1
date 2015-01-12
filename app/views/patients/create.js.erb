@@ -1,0 +1,5 @@
+jQuery(function($) {
+  alert("success");
+  $("#newPatientModal").modal('hide');
+  $('#patientsTable').DataTable().row.add(["<%= @patient.name %>","<%= @patient.address %>","<%= @patient.dob %>","<%= @patient.gender %>","<%= @patient.pincode %>","<a class='patient_edit btn btn-primary btn-sm' href='/patients/<%= @patient.id%>/edit'>Edit</a>","<a class='btn btn-primary btn-sm' href='/patients?id=<%= @patient.id %>''>Studies</a>"]).draw();
+});

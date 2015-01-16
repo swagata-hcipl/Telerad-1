@@ -19,6 +19,5 @@
 //= require dataTables/extras/dataTables.tableTools
 //= require turbolinks
 //= require jquery-fileupload
-//= require jquery.uploadify.min
-//= require nprogress.js
-//= require_tree .
+//= require nprogress
+//= require jquery.cookie

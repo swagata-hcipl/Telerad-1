@@ -3,21 +3,21 @@
     <div class="row fileupload-buttonbar">
       <div class="span7">
         <!-- The fileinput-button span is used to style the file input field as button -->
-        <span class="btn btn-success fileinput-button">
+        <span id="add_btn" class="btn btn-success fileinput-button">
           <i class="icon-plus icon-white"></i>
           <span>Add</span>
-          <%= f.file_field :upload, :multiple => true %>
+          <%= f.file_field :upload, :multiple => true, name: "study[upload]" %>
         </span>
         <%= f.hidden_field :patient_id, :value => study[:patient_id] %>
-        <button type="submit" class="btn btn-primary start">
+        <button id="upload_btn" type="submit" class="btn btn-primary start">
           <i class="icon-upload icon-white"></i>
           <span>upload</span>
         </button>
-        <!-- <button type="reset" class="btn btn-warning cancel">
+        <button id="reset_btn" type="reset" class="btn btn-warning cancel" style="display: none">
           <i class="icon-ban-circle icon-white"></i>
           <span>reset</span>
         </button>
-        <button type="button" class="btn btn-danger delete">
+        <!-- <button type="button" class="btn btn-danger delete">
           <i class="icon-trash icon-white"></i>
           <span>Delete</span>
         </button>
@@ -95,7 +95,5 @@
 </script>
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
-  
+
 </script>
-
-

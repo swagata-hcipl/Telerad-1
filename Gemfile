@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby "2.1.3"
 
 gem 'rails', '4.1.6'
 gem 'bcrypt', '3.1.7'
@@ -23,6 +23,7 @@ gem 'jquery-datatables-tabletools-rails', git: "https://github.com/mcallaway/jqu
 gem 'rubyzip'
 gem 'jquery-fileupload-rails', :git => 'git://github.com/tsaiid/jquery-fileupload-rails.git'
 gem 'dicom'
+gem 'redis'
 
 group :production do
   gem 'pg',             '0.17.1'
@@ -34,7 +35,7 @@ group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
-  gem 'thin'
+  gem 'puma'
   gem 'mysql2'
 end
 

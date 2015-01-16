@@ -1,7 +1,6 @@
 class PatientsController < ApplicationController
-
-  before_filter :authenticate_user, except: :emr
-
+  include ActionController::Live
+  before_filter :authenticate_user, except: [:emr, :upload_stream]
 
   # def index
   #   @patient = Patient.find(params[:id])
@@ -21,16 +20,6 @@ class PatientsController < ApplicationController
       format.js
     end
   end
-
-def show
-  @patient = Patient.find(params[:id])
-  @study = current_user.studies.new(:patient => Patient.find(params[:id]))
-  # @studies = Patient.find(params[:id]).studies.where.not(study_uid: nil)
-  respond_to do |format|
-    format.html 
-    format.json { render json: StudyDatatable.new(view_context) }
-  end
-end
 
   def create
     @patient = current_user.patients.create(patient_params)
@@ -104,6 +93,27 @@ end
     end
   end
 
+  def upload_stream
+    response.headers['Content-Type'] = 'text/event-stream'
+    sse = SSE.new(response.stream)
+    begin
+      redis = Redis.new
+      redis.psubscribe("study.*") do |on|
+        on.pmessage do |pattern, event, data|
+          response.stream.write("event: #{event}\n")
+          response.stream.write("data: #{data}\n\n")
+        end
+      end
+        # sse.write "data: #{DateTime.now}"
+     
+    rescue IOError
+      # When the client disconnects, we'll get an IOError on write
+    ensure
+      redis.quit
+      response.stream.close
+    end
+    # render nothing: true
+  end
 
   def emr
     if params[:gateway] && params[:ext_uid]
@@ -131,7 +141,7 @@ end
         redirect_to(:signup)
       end
     else
-      flash[:danger] = "Black Sheep, Ha Hahahahaha!"
+      flash[:danger] = "Invalid"
       redirect_to(:login)
     end
   end

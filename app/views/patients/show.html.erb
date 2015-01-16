@@ -1,28 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-<%= link_to "List", {:controller => "users", :action => :index}, :class => "btn btn-primary" %>
-<div class="container">
-  <%#= form_for @study do |f| %>
-    <%#= f.file_field :dicom_file_upload, :multiple => true %>
-    <%#= f.hidden_field :patient_id, :value => @study[:patient_id] %>
-    <%#= f.submit "Upload", :disable_with => 'Uploading...' %>
-   <%# end %>
-</div>
-<%= render partial: 'uploadbar', :locals => { study: @study} %>
-<table id="studiesTable" data-source="<%= patient_path(format: :json) %>" class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Images</th>
-      <th>Conducted on</th>
-      <th>Updated on</th>
-      <th>Comments</th>
-      <th>Viewer</th>
-    </tr>
-  </thead>
-</table>
-<%= render partial: 'comments/show'%>
-</div>
-</div>
+<div class="row">
+  <div class="col-md-12">
+    <%#= link_to "List", {:controller => "users", :action => :index}, :class => "btn btn-primary" %>
+    <%= render partial: 'patients/uploadbar', :locals => { study: @study} %>
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>Studies
+        </div>              
+      </div>
+      <div class="portlet-body">
+        <table id="studiesTable" data-source="<%= patient_path(format: :json) %>" class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Images</th>
+              <th>Conducted on</th>
+              <th>Updated on</th>
+              <th>Comments</th>
+              <th>Viewer</th>
+            </tr>
+          </thead>
+        </table>
+        <%= render partial: 'comments/show'%>
+      </div>
+    </div>
+  </div>
 </div>

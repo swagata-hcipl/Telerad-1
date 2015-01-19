@@ -9,4 +9,3 @@ $(document).on "page:change", ->
 $(document).on "page:restore", ->
   NProgress.remove()
   return
-

@@ -1,35 +1,50 @@
+      <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN EXAMPLE TABLE PORTLET-->
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-globe"></i>Patient Lists
+              </div>              
+            </div>
+            <div class="portlet-body">
+              
+              <table id="patientsTable" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>DOB</th>
+                  <th>Gender</th>
+                  <th>Pincode</th>
+                  <th>Edit</th>
+                  <th>Studies</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @patients.each do |patient| %>
+              <tr>
+                <td><%= patient.name %></td>
+                <td><%= patient.address %></td>
+                <td><%= patient.dob %></td>
+                <td><%= patient.gender %></td>
+                <td><%= patient.pincode %></td>
+                <td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :remote => true, 'data-type' => :script, :class => "patient_edit btn btn-primary btn-sm" %></td>
+                <td><%= link_to "Studies",{:controller=>'patients',:action => 'show',:id => patient.id}, :class => "btn btn-primary btn-sm" %></td>
+              </tr>
+              <% end %>
+            </tbody>
+            </table>                                        
+            </div>
+          </div>    
 
-<div class="container">
-<div class="row">
-<div class="col-md-12">
-<h4>Patients</h4>
-<%= link_to "+patient", {:controller => 'patients', :action => 'new'}, :class => "btn btn-primary" %><br/>
-<table id="patientsTable" class="table table-bordered">
-<thead>
-<tr>
-<th>Name</th>
-<th>Address</th>
-<th>DOB</th>
-<th>Gender</th>
-<th>Pincode</th>
-<th>Edit</th>
-<th>Studies</th>
-</tr>
-</thead>
-<% @patients.each do |patient| %>
-<tbody>
-<tr>
-<td><%= patient.name %></td>
-<td><%= patient.address %></td>
-<td><%= patient.dob %></td>
-<td><%= patient.gender %></td>
-<td><%= patient.pincode %></td>
-<td><%= link_to "Edit",{:controller=>'patients',:action => 'edit',:id => patient.id}, :class => "btn btn-primary" %></td>
-<td><%= link_to "Studies",{:controller=>'patients',:action => 'index',:id => patient.id}, :class => "btn btn-primary" %></td>
-</tr>
-<% end %>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+            <%= link_to "+patient", '#newPatientModal', :class => "btn btn-primary", :'data-toggle' => 'modal' %><br/>
+            <%= render partial: 'patients/new', locals: {patient: @patient} %>
+            <div id="editPatient"></div>
+
+        </div>
+      </div>
+      <!-- END PAGE CONTENT-->
+<%= javascript_tag("
+      $('#patientsTable').DataTable();
+") %>

@@ -1,5 +1,5 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * This is a manifest file that'll be compiled into application, which will include all the files
  * listed below.
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
@@ -8,9 +8,34 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require nprogress.css
- *= require_tree .
+ *
+ *= require assets/global/plugins/font-awesome/css/font-awesome.min
+ *= require assets/global/plugins/simple-line-icons/simple-line-icons.min
+ *= require assets/global/plugins/bootstrap/css/bootstrap.min
+ *= require assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min
+ *= require assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5
+ *= require assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min
+ *= require assets/global/plugins/bootstrap-datepicker/css/datepicker
+ *= require assets/global/plugins/select2/select2
+ *= require assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min
+ *= require assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min
+ *= require assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap
+ *= require assets/global/plugins/clockface/css/clockface
+ *= require assets/global/plugins/bootstrap-datepicker/css/datepicker3
+ *= require assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min
+ *= require assets/global/plugins/bootstrap-colorpicker/css/colorpicker
+ *= require assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3
+ *= require assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min
+ *= require assets/global/css/components
+ *= require assets/global/css/plugins
+ *= require assets/admin/layout/css/layout
+ *= require assets/admin/layout/css/themes/default
+ *= require assets/admin/layout/css/custom
+ *= require dataTables/extras/dataTables.tableTools
+ *= require nprogress
+ *= require jquery.fileupload-ui
+ *= require custom
  */
 
-@import "bootstrap";
+
+

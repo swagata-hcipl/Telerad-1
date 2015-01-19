@@ -1,0 +1,14 @@
+/**
+ *= require_self
+ *= require assets/global/plugins/font-awesome/css/font-awesome.min
+ *= require assets/global/plugins/simple-line-icons/simple-line-icons.min
+ *= require assets/global/plugins/bootstrap/css/bootstrap.min
+ *= require assets/global/plugins/uniform/css/uniform.default.css
+ *= require assets/admin/pages/css/login
+ *= require assets/global/css/components
+ *= require assets/global/css/plugins
+ *= require assets/admin/layout/css/layout
+ *= require assets/admin/layout/css/themes/default
+ *= require assets/admin/layout/css/custom
+ *= require_tree ./sessions
+ */

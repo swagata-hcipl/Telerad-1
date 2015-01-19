@@ -1,9 +1,113 @@
-<%= link_to "Sign Up >>", {:controller => :users, :action => :new} %>
-<h1>Log in</h1>
+<%= stylesheet_link_tag "sessions", :media => "all" %>
+<%= javascript_include_tag 'sessions', 'data-turbolinks-track' => true %>
+
+<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+<div class="menu-toggler sidebar-toggler">
+</div>
+<!-- END SIDEBAR TOGGLER BUTTON -->
+<!-- BEGIN LOGO -->
+<div class="logo">
+  <a href="index.html">
+  <%= image_tag "logo.png" %>
+  </a>
+</div>
+<!-- END LOGO -->
+<!-- BEGIN LOGIN -->
+<div class="content">
+  <!-- BEGIN LOGIN FORM -->
   <%= form_for(:session, url: login_path) do |f| %>
-  <%= f.label :gateway %>
-  <%= f.text_field :gateway, class: 'form-control' %>
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
-  <%= f.submit "Log in", class: "btn btn-primary" %>
+  <h3 class="form-title">Sign In</h3>
+  <div class="alert alert-danger display-hide">
+      <button class="close" data-close="alert"></button>
+      <span>
+      Enter any username and password. </span>
+  </div>
+  <div class="form-group">
+    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+    <label class="control-label visible-ie8 visible-ie9">Username</label>
+    <%= f.text_field :gateway, :class => "form-control form-control-solid placeholder-no-fix", :autocomplete => "off", :placeholder => "Username" %>
+    <label class="control-label visible-ie8 visible-ie9">Password</label>
+    <%= f.password_field :password, :class => "form-control form-control-solid placeholder-no-fix", :autocomplete => "off", :placeholder => "Password" %>
+  </div>
+    <%= submit_tag "LogIn", class: "btn btn-primary uppercase" %>
 <% end %>
+
+  <!-- <form class="login-form" action="" method="post">
+    <h3 class="form-title">Sign In</h3>
+    <div class="alert alert-danger display-hide">
+      <button class="close" data-close="alert"></button>
+      <span>
+      Enter any username and password. </span>
+    </div>
+    <div class="form-group">
+      <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+      <!-- <label class="control-label visible-ie8 visible-ie9">Username</label>
+      <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+    <!-- </div>
+    <div class="form-group"> -->
+      <!-- <label class="control-label visible-ie8 visible-ie9">Password</label>
+      <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
+    </div>
+    <button type="submit" class="btn btn-success uppercase">Login</button>
+    <!-- <div class="form-actions">
+        <form action="">
+      <button type="submit" class="btn btn-success uppercase" onClick="window.location.href=''">Login</button> 
+            </form> 
+    </div> -->
+    
+  <!-- </form> -->
+  <!-- END LOGIN FORM -->
+  <!-- BEGIN FORGOT PASSWORD FORM -->
+  <form class="forget-form" action="index.html" method="post">
+    <h3>Forget Password ?</h3>
+    <p>
+       Enter your e-mail address below to reset your password.
+    </p>
+    <div class="form-group">
+      <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email"/>
+    </div>
+    <div class="form-actions">
+      <button type="button" id="back-btn" class="btn btn-default">Back</button>
+      <button type="submit" class="btn btn-success uppercase pull-right">Submit</button>
+    </div>
+  </form>
+  <!-- END FORGOT PASSWORD FORM -->
+  <!-- BEGIN REGISTRATION FORM -->
+    <h3>Sign Up</h3>
+    <p class="hint">
+       Enter your personal details below:
+    </p>
+    <%= form_for @user do |f| %>
+        <div class="form-group">
+          <label class="control-label visible-ie8 visible-ie9">Company Name</label>
+          <%= f.text_field :name, value: "", :minlength => 6, :html => {class: "form-control placeholder-no-fix", placeholder: "Full Name" } %> 
+        </div>
+         <div class="form-group">
+          <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+          <label class="control-label visible-ie8 visible-ie9">UserName</label>
+          <%= f.text_field :gateway, value: "", :minlength => 6, :html => {class: "form-control placeholder-no-fix", placeholder: "Gateway"} %>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Type</label>
+            <%= f.select :gateway_type, options_for_select([['Diagnostic Center','Diagnostic Center'],['EMR','EMR']])%>
+        </div>
+        <div class="form-group">
+          <label class="control-label visible-ie8 visible-ie9">Password</label>
+          <%= f.password_field :password, :html => {class: "form-control placeholder-no-fix", placeholder: "Password", autocomplete: "off"}%>
+        </div>
+        <div class="form-group">
+          <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+          <%= f.password_field :password_confirmation, :html => {class: "form-control placeholder-no-fix", placeholder: "Re-type Password", autocomplete: "off"}%>
+          <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword"/>
+        </div>
+        <%= f.submit :Signup %>
+    <% end %>
+    
+  <!-- END REGISTRATION FORM -->
+</div>
+<div class="copyright">
+   2014 &copy; Telehealthindia.com | All Rights Reserved.
+</div>
+<!-- END LOGIN -->
+
+

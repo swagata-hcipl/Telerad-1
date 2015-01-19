@@ -5,6 +5,11 @@ gem 'rails', '4.1.6'
 gem 'bcrypt', '3.1.7'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'sass-rails', '~> 4.0.3'
+
+gem "less-rails"
+gem 'therubyracer', :platforms => :ruby
+gem 'twitter-bootstrap-rails'
+
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -18,6 +23,7 @@ gem 'jquery-datatables-tabletools-rails', git: "https://github.com/mcallaway/jqu
 gem 'rubyzip'
 gem 'jquery-fileupload-rails', :git => 'git://github.com/tsaiid/jquery-fileupload-rails.git'
 gem 'dicom'
+gem 'redis'
 
 group :production do
   gem 'pg',             '0.17.1'
@@ -29,7 +35,7 @@ group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
-  gem 'thin'
+  gem 'puma'
   gem 'mysql2'
 end
 

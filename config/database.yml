@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: telerad-rails
-  password: mourocky
+  username: root
+  password: root
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -36,8 +36,6 @@ pacs_development:
   encoding: utf8
   database: pacsdb
   pool: 5
-  username: pacs
-  password: pacs
+  username: root
+  password: root
   socket: /var/run/mysqld/mysqld.sock
-
-

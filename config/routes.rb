@@ -6,16 +6,13 @@ Telerad::Application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get 'comments/new'
-  post 'comments/create'
-
-  #get 'comments/show' 
-
-  get 'studies/new'
+  post 'emr_patient' => 'patients#emr'
 
   resources :users
   resources :patients
+
   resources :studies, only: [:new, :create]
-  resources :comments, only: [:show]
+  resources :comments, only: [:new, :create, :show]
+  get 'upload_stream' => 'patients#upload_stream'
 
 end
